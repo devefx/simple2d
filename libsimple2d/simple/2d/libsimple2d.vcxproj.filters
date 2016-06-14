@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="2d">
+      <UniqueIdentifier>{f6c8dc01-3077-4c0f-b723-9906fab2bef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="audioengine">
+      <UniqueIdentifier>{804f61d3-c310-4bf7-be0a-d3ace72c12ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{db2398de-0abe-49a6-8fe2-d2e9de15aa5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{43446186-855f-4622-87fc-efe1ebcad52b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{f3d13326-1927-4e5b-8bd2-2d8f14ce9197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="renderer">
+      <UniqueIdentifier>{421fa0b4-1e27-4952-8254-aca9d671dfb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{40453ebc-2b0a-46e5-a06c-4111b17b700d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="network">
+      <UniqueIdentifier>{58241245-798c-4912-82e8-47f564a2343a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{e9c60ee1-b2e8-4dd2-8fb3-bb255b2f7799}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\simple2d.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\simple2d.h" />
+    <ClInclude Include="..\platform\PlatformConfig.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\PlatformMacros.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="simple2d.def" />
+  </ItemGroup>
+</Project>
