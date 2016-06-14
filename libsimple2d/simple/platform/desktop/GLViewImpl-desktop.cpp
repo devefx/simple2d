@@ -169,6 +169,20 @@ bool GLViewImpl::initWithRect(const std::string& viewName, int width, int height
 
     glfwMakeContextCurrent(_mainWindow);
 
+    // center window
+#if TARGET_PLATFORM == PLATFORM_WIN32
+    RECT rect;
+
+    GetWindowRect(getWin32Window(), &rect);
+
+    int cx = GetSystemMetrics(SM_CXSCREEN);
+    int cy = GetSystemMetrics(SM_CYSCREEN);
+    int w = rect.right - rect.left;
+    int h = rect.bottom - rect.top;
+
+    MoveWindow(getWin32Window(), (cx - w) / 2, (cy - h) / 2, w, h, TRUE);
+#endif
+
     glfwSetMouseButtonCallback(_mainWindow, GLFWEventHandler::onGLFWMouseCallBack);
     glfwSetCursorPosCallback(_mainWindow, GLFWEventHandler::onGLFWMouseMoveCallBack);
     glfwSetScrollCallback(_mainWindow, GLFWEventHandler::onGLFWMouseScrollCallback);
