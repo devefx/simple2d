@@ -2,7 +2,7 @@
 #define __PLATFORM_MACROS_H__
 
 #include "platform/PlatformConfig.h"
-
+#include "platform/PlatformDefine.h"
 
 /// @name namespace simple2d
 /// @{

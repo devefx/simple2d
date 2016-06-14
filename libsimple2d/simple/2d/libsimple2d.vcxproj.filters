@@ -43,9 +43,24 @@
     <Filter Include="platform\win32">
       <UniqueIdentifier>{e800515a-c30a-40a7-a3bb-78704c769544}</UniqueIdentifier>
     </Filter>
+    <Filter Include="platform\desktop">
+      <UniqueIdentifier>{f258feac-6aaf-4799-ae8d-e5cd21b72c57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\simple2d.cpp" />
+    <ClCompile Include="..\base\Ref.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\AutoreleasePool.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\GLView.cpp">
+      <Filter>platform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\desktop\GLViewImpl-desktop.cpp">
+      <Filter>platform\desktop</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\simple2d.h" />
@@ -90,6 +105,18 @@
     </ClInclude>
     <ClInclude Include="..\platform\win32\GL-win32.h">
       <Filter>platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\Ref.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\AutoreleasePool.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\GLView.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\desktop\GLViewImpl-desktop.h">
+      <Filter>platform\desktop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
