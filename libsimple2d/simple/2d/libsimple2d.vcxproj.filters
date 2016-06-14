@@ -61,6 +61,21 @@
     <ClCompile Include="..\platform\desktop\GLViewImpl-desktop.cpp">
       <Filter>platform\desktop</Filter>
     </ClCompile>
+    <ClCompile Include="..\platform\win32\Application-win32.cpp">
+      <Filter>platform\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\mac\Application-mac.cpp">
+      <Filter>platform\mac</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\linux\Application-linux.cpp">
+      <Filter>platform\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\ios\Application-ios.cpp">
+      <Filter>platform\ios</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\android\Application-android.cpp">
+      <Filter>platform\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\simple2d.h" />
@@ -117,6 +132,30 @@
     </ClInclude>
     <ClInclude Include="..\platform\desktop\GLViewImpl-desktop.h">
       <Filter>platform\desktop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\Application.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\win32\Application-win32.h">
+      <Filter>platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\mac\Application-mac.h">
+      <Filter>platform\mac</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\linux\Application-linux.h">
+      <Filter>platform\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\ios\Application-ios.h">
+      <Filter>platform\ios</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\android\Application-android.h">
+      <Filter>platform\android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\ApplicationProtocol.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\Common.h">
+      <Filter>platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

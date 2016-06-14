@@ -1,5 +1,7 @@
 #include "main.h"
-#include "simple2d.h"
+#include "AppDelegate.h"
+
+USING_NS;
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
 					   HINSTANCE hPrevInstance,
@@ -9,7 +11,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-
-
-	return 0;
+    AppDelegate app;
+	return Application::getInstance()->run();
 }
