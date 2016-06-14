@@ -34,6 +34,12 @@
     #endif
 #endif // !NULL
 
+#if _MSC_VER > 1800
+#pragma comment(lib,"glfw3-2015.lib")
+#else
+#pragma comment(lib,"glfw3.lib")
+#endif
+
 #endif // TARGET_PLATFORM == PLATFORM_WIN32
 
 #endif // !__PLATFORM_DEFINE_WIN32_H__
