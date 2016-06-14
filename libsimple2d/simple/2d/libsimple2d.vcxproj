@@ -58,6 +58,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>WIN32;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -66,6 +67,13 @@
       <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PreLinkEvent>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+
+
+xcopy /Y /Q "$(ProjectDir)..\..\external\glfw3\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(OutDir)"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -77,6 +85,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <PreprocessorDefinitions>WIN32;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -87,13 +96,32 @@
       <IgnoreSpecificDefaultLibraries>LIBCMTD.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PreLinkEvent>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+
+
+xcopy /Y /Q "$(ProjectDir)..\..\external\glfw3\prebuilt\win32\*.*" "$(OutDir)"
+xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(OutDir)"</Command>
+    </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\simple2d.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\platform\android\GL-android.h" />
+    <ClInclude Include="..\platform\android\PlatformDefine-android.h" />
+    <ClInclude Include="..\platform\GL.h" />
+    <ClInclude Include="..\platform\ios\GL-ios.h" />
+    <ClInclude Include="..\platform\ios\PlatformDefine-ios.h" />
+    <ClInclude Include="..\platform\linux\GL-linux.h" />
+    <ClInclude Include="..\platform\linux\PlatformDefine-linux.h" />
+    <ClInclude Include="..\platform\mac\GL-mac.h" />
+    <ClInclude Include="..\platform\mac\PlatformDefine-mac.h" />
     <ClInclude Include="..\platform\PlatformConfig.h" />
+    <ClInclude Include="..\platform\PlatformDefine.h" />
     <ClInclude Include="..\platform\PlatformMacros.h" />
+    <ClInclude Include="..\platform\win32\GL-win32.h" />
+    <ClInclude Include="..\platform\win32\PlatformDefine-win32.h" />
     <ClInclude Include="..\simple2d.h" />
   </ItemGroup>
   <ItemGroup>

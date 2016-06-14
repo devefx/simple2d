@@ -28,6 +28,21 @@
     <Filter Include="ui">
       <UniqueIdentifier>{e9c60ee1-b2e8-4dd2-8fb3-bb255b2f7799}</UniqueIdentifier>
     </Filter>
+    <Filter Include="platform\mac">
+      <UniqueIdentifier>{595380b7-d404-43f4-ab22-a293abadd04f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\android">
+      <UniqueIdentifier>{556cb002-2ffe-4eaf-9e3e-174ad920e015}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\ios">
+      <UniqueIdentifier>{866827d3-cf7f-44f6-87ac-32b0fc9a1ef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\linux">
+      <UniqueIdentifier>{ba97ac95-e324-4d9e-96c4-6f41d565ec72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\win32">
+      <UniqueIdentifier>{e800515a-c30a-40a7-a3bb-78704c769544}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\simple2d.cpp" />
@@ -39,6 +54,42 @@
     </ClInclude>
     <ClInclude Include="..\platform\PlatformMacros.h">
       <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\PlatformDefine.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\win32\PlatformDefine-win32.h">
+      <Filter>platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\android\PlatformDefine-android.h">
+      <Filter>platform\android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\ios\PlatformDefine-ios.h">
+      <Filter>platform\ios</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\linux\PlatformDefine-linux.h">
+      <Filter>platform\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\mac\PlatformDefine-mac.h">
+      <Filter>platform\mac</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\GL.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\android\GL-android.h">
+      <Filter>platform\android</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\ios\GL-ios.h">
+      <Filter>platform\ios</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\linux\GL-linux.h">
+      <Filter>platform\linux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\mac\GL-mac.h">
+      <Filter>platform\mac</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\win32\GL-win32.h">
+      <Filter>platform\win32</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
