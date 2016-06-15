@@ -55,8 +55,8 @@ int Application::run()
         {
             nLast.QuadPart = nNow.QuadPart - (nNow.QuadPart % _animationInterval.QuadPart);
 
-             director->mainLoop();
-             glview->pollEvents();
+            director->mainLoop();
+            glview->pollEvents();
         }
         else
         {
