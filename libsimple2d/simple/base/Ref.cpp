@@ -1,4 +1,5 @@
 #include "base/Ref.h"
+#include "base/AutoreleasePool.h"
 
 NS_BEGIN
 
@@ -29,7 +30,7 @@ void Ref::release()
 
 Ref* Ref::autorelease()
 {
-
+    PoolManager::getInstance()->getCurrentPool()->addObject(this);
     return this;
 }
 

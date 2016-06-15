@@ -58,7 +58,9 @@ private:
 };
 
 NS_END
-// end of base group
-/** @} */
+/**
+ end of base group
+ @}
+ */
 
 #endif // !__BASE_AUTORELEASE_POOL_H__
