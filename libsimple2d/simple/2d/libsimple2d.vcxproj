@@ -124,7 +124,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
     <ClCompile Include="..\platform\GLView.cpp" />
     <ClCompile Include="..\platform\ios\Application-ios.cpp" />
     <ClCompile Include="..\platform\linux\Application-linux.cpp" />
-    <ClCompile Include="..\platform\mac\Application-mac.cpp" />
+    <ClCompile Include="..\platform\mac\Application-mac.mm" />
     <ClCompile Include="..\platform\win32\Application-win32.cpp" />
     <ClCompile Include="..\simple2d.cpp" />
   </ItemGroup>

@@ -20,7 +20,6 @@ Application::Application()
 Application::~Application()
 {
     ASSERT(sm_pSharedApplication != nullptr);
-    SAFE_DELETE(sm_pSharedApplication);
     sm_pSharedApplication = nullptr;
 }
 
