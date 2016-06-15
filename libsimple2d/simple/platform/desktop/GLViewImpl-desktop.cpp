@@ -160,14 +160,18 @@ bool GLViewImpl::initWithRect(const std::string& viewName, int width, int height
     _frameZoomFactor = frameZoomFactor;
 
     glfwWindowHint(GLFW_RESIZABLE,GL_FALSE);
+    glfwWindowHint(GLFW_RED_BITS,_glContextAttrs.redBits);
+    glfwWindowHint(GLFW_GREEN_BITS,_glContextAttrs.greenBits);
+    glfwWindowHint(GLFW_BLUE_BITS,_glContextAttrs.blueBits);
+    glfwWindowHint(GLFW_ALPHA_BITS,_glContextAttrs.alphaBits);
+    glfwWindowHint(GLFW_DEPTH_BITS,_glContextAttrs.depthBits);
+    glfwWindowHint(GLFW_STENCIL_BITS,_glContextAttrs.stencilBits);
 
     _mainWindow = glfwCreateWindow(width * _frameZoomFactor,
                                    height * _frameZoomFactor,
                                    _viewName.c_str(),
                                    _monitor,
                                    nullptr);
-
-    glfwMakeContextCurrent(_mainWindow);
 
     // center window
 #if TARGET_PLATFORM == PLATFORM_WIN32
@@ -183,6 +187,8 @@ bool GLViewImpl::initWithRect(const std::string& viewName, int width, int height
     MoveWindow(getWin32Window(), (cx - w) / 2, (cy - h) / 2, w, h, TRUE);
 #endif
 
+    glfwMakeContextCurrent(_mainWindow);
+
     glfwSetMouseButtonCallback(_mainWindow, GLFWEventHandler::onGLFWMouseCallBack);
     glfwSetCursorPosCallback(_mainWindow, GLFWEventHandler::onGLFWMouseMoveCallBack);
     glfwSetScrollCallback(_mainWindow, GLFWEventHandler::onGLFWMouseScrollCallback);
@@ -192,6 +198,8 @@ bool GLViewImpl::initWithRect(const std::string& viewName, int width, int height
     glfwSetFramebufferSizeCallback(_mainWindow, GLFWEventHandler::onGLFWframebuffersize);
     glfwSetWindowSizeCallback(_mainWindow, GLFWEventHandler::onGLFWWindowSizeFunCallback);
     glfwSetWindowIconifyCallback(_mainWindow, GLFWEventHandler::onGLFWWindowIconifyCallback);
+
+    setFrameSize(width, height);
 
     initGlew();
 
@@ -261,6 +269,65 @@ bool GLViewImpl::windowShouldClose()
 void GLViewImpl::pollEvents()
 {
     glfwPollEvents();
+}
+
+void GLViewImpl::setIMEKeyboardState(bool bOpen)
+{
+}
+
+void GLViewImpl::setCursorVisible(bool isVisible)
+{
+    if (_mainWindow == NULL)
+    {
+        return;
+    }
+    if (isVisible)
+    {
+        glfwSetInputMode(_mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    }
+    else
+    {
+        glfwSetInputMode(_mainWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    }
+}
+
+void GLViewImpl::setFrameZoomFactor(float zoomFactor)
+{
+    //
+    _frameZoomFactor = zoomFactor;
+    updateFrameSize();
+}
+
+float GLViewImpl::getFrameZoomFactor() const
+{
+    return _frameZoomFactor;
+}
+
+void GLViewImpl::updateFrameSize()
+{
+
+}
+
+void GLViewImpl::setFrameSize(float width, float height)
+{
+    GLView::setFrameSize(width, height);
+    updateFrameSize();
+}
+
+void GLViewImpl::setViewPortInPoints(float x , float y , float w , float h)
+{
+    glViewport((GLint)(x * _scaleX * _retinaFactor * _frameZoomFactor + _viewPortRect.origin.x * _retinaFactor * _frameZoomFactor),
+               (GLint)(y * _scaleY * _retinaFactor  * _frameZoomFactor + _viewPortRect.origin.y * _retinaFactor * _frameZoomFactor),
+               (GLsizei)(w * _scaleX * _retinaFactor * _frameZoomFactor),
+               (GLsizei)(h * _scaleY * _retinaFactor * _frameZoomFactor));
+}
+
+void GLViewImpl::setScissorInPoints(float x , float y , float w , float h)
+{
+    glScissor((GLint)(x * _scaleX * _retinaFactor * _frameZoomFactor + _viewPortRect.origin.x * _retinaFactor * _frameZoomFactor),
+               (GLint)(y * _scaleY * _retinaFactor  * _frameZoomFactor + _viewPortRect.origin.y * _retinaFactor * _frameZoomFactor),
+               (GLsizei)(w * _scaleX * _retinaFactor * _frameZoomFactor),
+               (GLsizei)(h * _scaleY * _retinaFactor * _frameZoomFactor));
 }
 
 void GLViewImpl::onGLFWError(int errorID, const char* errorDesc)

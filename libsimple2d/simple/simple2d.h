@@ -3,10 +3,22 @@
 
 // base
 #include "base/Ref.h"
+#include "base/AutoreleasePool.h"
+#include "base/Director.h"
+
+
+// math
+#include "math/Geometry.h"
+#include "math/Vec2.h"
+#include "math/Vec3.h"
+#include "math/Vec4.h"
+#include "math/Mat4.h"
+
 
 // platfomr
 #include "platform/PlatformConfig.h"
 #include "platform/PlatformMacros.h"
+
 
 #include "platform/Application.h"
 #include "platform/GL.h"

@@ -35,6 +35,11 @@ public:
     static GLViewImpl* createWithFullScreen(const std::string& viewName, const GLFWvidmode &videoMode, GLFWmonitor *monitor);
 
 
+    float getFrameZoomFactor() const override;
+
+    virtual void setViewPortInPoints(float x , float y , float w , float h) override;
+    virtual void setScissorInPoints(float x , float y , float w , float h) override;
+
     bool windowShouldClose() override;
     void pollEvents() override;
     GLFWwindow* getWindow() const { return _mainWindow; }
@@ -43,6 +48,14 @@ public:
     virtual bool isOpenGLReady() override;
     virtual void end() override;
     virtual void swapBuffers() override;
+    virtual void setFrameSize(float width, float height) override;
+    virtual void setIMEKeyboardState(bool bOpen) override;
+
+    void setFrameZoomFactor(float zoomFactor) override;
+
+    virtual void setCursorVisible(bool isVisible) override;
+
+
 
 #if TARGET_PLATFORM == PLATFORM_WIN32
     HWND getWin32Window() { return glfwGetWin32Window(_mainWindow); }
@@ -59,6 +72,8 @@ protected:
     bool initWithFullscreen(const std::string& viewname, const GLFWvidmode &videoMode, GLFWmonitor *monitor);
 
     bool initGlew();
+
+    void updateFrameSize();
 
     // GLFW callbacks
     void onGLFWError(int errorID, const char* errorDesc);

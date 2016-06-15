@@ -12,19 +12,25 @@ AppDelegate::~AppDelegate()
 
 void AppDelegate::initGLContextAttrs()
 {
+    GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
 
+    GLView::setGLContextAttrs(glContextAttrs);
 }
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
-    GLView* view = GLViewImpl::create("Hello GLView");
+    auto director = Director::getInstance();
 
-    while (!view->windowShouldClose())
+    auto glview = director->getOpenGLView();
+
+    if (!glview)
     {
-        view->swapBuffers();
-        view->pollEvents();
+        glview = GLViewImpl::create("Hello GLView");
+
+        director->setOpenGLView(glview);
     }
-    view->end();
+
+    director->setAnimationInterval(1.0 / 60);
 
     return true;
 }

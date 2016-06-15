@@ -1,7 +1,9 @@
 #ifndef __GLVIEW_H__
 #define __GLVIEW_H__
 
+#include "math/Geometry.h"
 #include "base/Ref.h"
+#include "platform/GL.h"
 #include <string>
 
 #if TARGET_PLATFORM == PLATFORM_WIN32
@@ -74,17 +76,65 @@ public:
 
     virtual void swapBuffers() = 0;
 
+    virtual void setIMEKeyboardState(bool open) = 0;
+
     virtual bool windowShouldClose() { return false; };
+
+    static void setGLContextAttrs(GLContextAttrs& glContextAttrs);
+
+    static GLContextAttrs getGLContextAttrs();
+
+    static GLContextAttrs _glContextAttrs;
 
     virtual void pollEvents();
 
+    virtual const Size& getFrameSize() const;
+
+    virtual void setFrameSize(float width, float height);
+
+    virtual void setFrameZoomFactor(float zoomFactor) {}
+
+    virtual float getFrameZoomFactor() const { return 1.0; }
+
     virtual void setCursorVisible(bool isVisible) {}
+
+    //
+
+#if (TARGET_PLATFORM == PLATFORM_IOS)
+    virtual void* getEAGLView() const { return nullptr; }
+#endif // TARGET_PLATFORM == PLATFORM_IOS
+
+    virtual Size getVisibleSize() const;
+
+    virtual Vec2 getVisibleOrigin() const;
+
+    virtual Rect getVisibleRect() const;
+
+    virtual void setDesignResolutionSize(float width, float height, ResolutionPolicy resolutionPolicy);
+
+    virtual const Size&  getDesignResolutionSize() const;
+
+    virtual void setViewPortInPoints(float x , float y , float w , float h);
+
+    virtual void setScissorInPoints(float x , float y , float w , float h);
+
+    virtual bool isScissorEnabled();
+
+    virtual Rect getScissorRect() const;
 
     virtual void setViewName(const std::string& viewname);
 
     const std::string& getViewName() const;
 
+    virtual void handleTouchesBegin(int num, intptr_t ids[], float xs[], float ys[]);
 
+    virtual void handleTouchesMove(int num, intptr_t ids[], float xs[], float ys[]);
+
+    virtual void handleTouchesEnd(int num, intptr_t ids[], float xs[], float ys[]);
+
+    virtual void handleTouchesCancel(int num, intptr_t ids[], float xs[], float ys[]);
+
+    const Rect& getViewPortRect() const;
 
     float getScaleX() const;
 
@@ -99,6 +149,16 @@ public:
 #endif
 
 protected:
+    void updateDesignResolutionSize();
+
+    //void handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode, int num, intptr_t ids[], float xs[], float ys[]);
+
+    Size _screenSize;
+
+    Size _designResolutionSize;
+
+    Rect _viewPortRect;
+
     std::string _viewName;
 
     float _scaleX;
@@ -107,7 +167,9 @@ protected:
 };
 
 NS_END
-// end of platform group
-/// @}
+/**
+ end of platform group
+ @}
+ */
 
 #endif // !__GLVIEW_H__

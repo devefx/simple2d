@@ -109,7 +109,16 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\base\AutoreleasePool.cpp" />
+    <ClCompile Include="..\base\Director.cpp" />
+    <ClCompile Include="..\base\event\Event.cpp" />
+    <ClCompile Include="..\base\event\EventTouch.cpp" />
+    <ClCompile Include="..\base\MatrixControl.cpp" />
     <ClCompile Include="..\base\Ref.cpp" />
+    <ClCompile Include="..\math\Geometry.cpp" />
+    <ClCompile Include="..\math\Mat4.cpp" />
+    <ClCompile Include="..\math\Vec2.cpp" />
+    <ClCompile Include="..\math\Vec3.cpp" />
+    <ClCompile Include="..\math\Vec4.cpp" />
     <ClCompile Include="..\platform\android\Application-android.cpp" />
     <ClCompile Include="..\platform\desktop\GLViewImpl-desktop.cpp" />
     <ClCompile Include="..\platform\GLView.cpp" />
@@ -121,7 +130,18 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\base\AutoreleasePool.h" />
+    <ClInclude Include="..\base\Director.h" />
+    <ClInclude Include="..\base\event\Event.h" />
+    <ClInclude Include="..\base\event\EventTouch.h" />
+    <ClInclude Include="..\base\MatrixControl.h" />
     <ClInclude Include="..\base\Ref.h" />
+    <ClInclude Include="..\math\Geometry.h" />
+    <ClInclude Include="..\math\Mat4.h" />
+    <ClInclude Include="..\math\Math.h" />
+    <ClInclude Include="..\math\MathBase.h" />
+    <ClInclude Include="..\math\Vec2.h" />
+    <ClInclude Include="..\math\Vec3.h" />
+    <ClInclude Include="..\math\Vec4.h" />
     <ClInclude Include="..\platform\android\Application-android.h" />
     <ClInclude Include="..\platform\android\GL-android.h" />
     <ClInclude Include="..\platform\android\PlatformDefine-android.h" />
@@ -149,6 +169,10 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
     <ClInclude Include="..\simple2d.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\math\Mat4.inl" />
+    <None Include="..\math\Vec2.inl" />
+    <None Include="..\math\Vec3.inl" />
+    <None Include="..\math\Vec4.inl" />
     <None Include="simple2d.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

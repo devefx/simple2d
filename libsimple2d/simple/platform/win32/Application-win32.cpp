@@ -2,6 +2,8 @@
 
 #if TARGET_PLATFORM == PLATFORM_WIN32
 
+#include "base/Director.h"
+
 NS_BEGIN
 
 Application* Application::sm_pSharedApplication = 0;
@@ -9,7 +11,7 @@ Application* Application::sm_pSharedApplication = 0;
 Application::Application()
 : _instance(nullptr)
 {
-    _instance    = GetModuleHandle(nullptr);
+    _instance = GetModuleHandle(nullptr);
     _animationInterval.QuadPart = 0;
     ASSERT(!sm_pSharedApplication);
     sm_pSharedApplication = this;
@@ -23,13 +25,53 @@ Application::~Application()
 
 int Application::run()
 {
+    // Main message loop:
+    LARGE_INTEGER nLast;
+    LARGE_INTEGER nNow;
+
+    QueryPerformanceCounter(&nLast);
+
     initGLContextAttrs();
 
+    // Initialize instance and simple2d.
     if (!applicationDidFinishLaunching())
     {
         return 1;
     }
 
+    auto director = Director::getInstance();
+
+    auto glview = director->getOpenGLView();
+
+    glview->retain();
+
+    glview->swapBuffers();
+
+    while (!glview->windowShouldClose())
+    {
+        QueryPerformanceCounter(&nNow);
+
+        if (nNow.QuadPart - nLast.QuadPart > _animationInterval.QuadPart)
+        {
+            nLast.QuadPart = nNow.QuadPart - (nNow.QuadPart % _animationInterval.QuadPart);
+
+             director->mainLoop();
+             glview->pollEvents();
+        }
+        else
+        {
+            Sleep(1);
+        }
+    }
+
+    if (glview->isOpenGLReady())
+    {
+       director->end();
+       director->mainLoop();
+       director = nullptr; 
+    }
+
+    glview->release();
     return 0;
 }
 
@@ -124,8 +166,12 @@ LanguageType Application::getCurrentLanguage()
 
 const char* Application::getCurrentLanguageCode()
 {
-
-    return nullptr;
+    LANGID lid = GetUserDefaultUILanguage();
+    const LCID locale_id = MAKELCID(lid, SORT_DEFAULT);
+    static char code[3] = { 0 };
+    GetLocaleInfoA(locale_id, LOCALE_SISO639LANGNAME, code, sizeof(code));
+    code[2] = '\0';
+    return code;
 }
 
 Application::Platform Application::getTargetPlatform()
@@ -135,8 +181,11 @@ Application::Platform Application::getTargetPlatform()
 
 bool Application::openURL(const std::string &url)
 {
-
-    return false;
+    WCHAR *temp = new WCHAR[url.size() + 1];
+    int wchars_num = MultiByteToWideChar(CP_UTF8, 0, url.c_str(), url.size() + 1, temp, url.size() + 1);
+    HINSTANCE r = ShellExecuteW(NULL, L"open", temp, NULL, NULL, SW_SHOWNORMAL);
+    delete[] temp;
+    return (size_t)r > 32;
 }
 
 NS_END
