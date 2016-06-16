@@ -14,8 +14,13 @@
 #include "math/Vec4.h"
 #include "math/Mat4.h"
 
+// renderer
+#include "renderer/Renderer.h"
+#include "renderer/GLStateCache.h"
+#include "renderer/Texture2D.h"
 
 // platfomr
+#include "platform/Common.h"
 #include "platform/PlatformConfig.h"
 #include "platform/PlatformMacros.h"
 

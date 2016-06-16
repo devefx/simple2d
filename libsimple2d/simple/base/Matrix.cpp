@@ -1,16 +1,28 @@
-#include "base/MatrixControl.h"
+#include "base/Matrix.h"
 
 NS_BEGIN
 
-MatrixControl::MatrixControl()
+static Matrix *s_SharedMatrix = nullptr;
+
+Matrix::Matrix()
 {
 }
 
-MatrixControl::~MatrixControl()
+Matrix::~Matrix()
 {
 }
 
-void MatrixControl::initMatrixStack()
+Matrix* Matrix::getInstance()
+{
+    if (s_SharedMatrix == nullptr)
+    {
+        s_SharedMatrix = new (std::nothrow) Matrix();
+        s_SharedMatrix->initMatrixStack();
+    }
+    return s_SharedMatrix;
+}
+
+void Matrix::initMatrixStack()
 {
     while (!_modelViewMatrixStack.empty())
     {
@@ -32,7 +44,7 @@ void MatrixControl::initMatrixStack()
     _textureMatrixStack.push(Mat4::IDENTITY);
 }
 
-void MatrixControl::pushMatrix(MATRIX_STACK_TYPE type)
+void Matrix::pushMatrix(MATRIX_STACK_TYPE type)
 {
     if(type == MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW)
     {
@@ -48,7 +60,7 @@ void MatrixControl::pushMatrix(MATRIX_STACK_TYPE type)
     }
 }
 
-void MatrixControl::popMatrix(MATRIX_STACK_TYPE type)
+void Matrix::popMatrix(MATRIX_STACK_TYPE type)
 {
     if(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW == type)
     {
@@ -64,7 +76,7 @@ void MatrixControl::popMatrix(MATRIX_STACK_TYPE type)
     }
 }
 
-void MatrixControl::loadIdentityMatrix(MATRIX_STACK_TYPE type)
+void Matrix::loadIdentityMatrix(MATRIX_STACK_TYPE type)
 {
     if(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW == type)
     {
@@ -80,7 +92,7 @@ void MatrixControl::loadIdentityMatrix(MATRIX_STACK_TYPE type)
     }
 }
 
-void MatrixControl::loadMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
+void Matrix::loadMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
 {
     if(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW == type)
     {
@@ -96,7 +108,7 @@ void MatrixControl::loadMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
     }
 }
 
-void MatrixControl::multiplyMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
+void Matrix::multiplyMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
 {
     if(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW == type)
     {
@@ -112,7 +124,7 @@ void MatrixControl::multiplyMatrix(MATRIX_STACK_TYPE type, const Mat4& mat)
     }
 }
 
-const Mat4& MatrixControl::getMatrix(MATRIX_STACK_TYPE type)
+const Mat4& Matrix::getMatrix(MATRIX_STACK_TYPE type)
 {
     if(type == MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW)
     {
@@ -129,7 +141,7 @@ const Mat4& MatrixControl::getMatrix(MATRIX_STACK_TYPE type)
     return  _modelViewMatrixStack.top();
 }
 
-void MatrixControl::resetMatrixStack()
+void Matrix::resetMatrixStack()
 {
     initMatrixStack();
 }

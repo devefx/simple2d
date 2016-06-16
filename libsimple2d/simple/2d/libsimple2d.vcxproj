@@ -112,7 +112,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
     <ClCompile Include="..\base\Director.cpp" />
     <ClCompile Include="..\base\event\Event.cpp" />
     <ClCompile Include="..\base\event\EventTouch.cpp" />
-    <ClCompile Include="..\base\MatrixControl.cpp" />
+    <ClCompile Include="..\base\Matrix.cpp" />
     <ClCompile Include="..\base\Ref.cpp" />
     <ClCompile Include="..\math\Geometry.cpp" />
     <ClCompile Include="..\math\Mat4.cpp" />
@@ -126,6 +126,9 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
     <ClCompile Include="..\platform\linux\Application-linux.cpp" />
     <ClCompile Include="..\platform\mac\Application-mac.mm" />
     <ClCompile Include="..\platform\win32\Application-win32.cpp" />
+    <ClCompile Include="..\renderer\GLStateCache.cpp" />
+    <ClCompile Include="..\renderer\Renderer.cpp" />
+    <ClCompile Include="..\renderer\Texture2D.cpp" />
     <ClCompile Include="..\simple2d.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -133,7 +136,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
     <ClInclude Include="..\base\Director.h" />
     <ClInclude Include="..\base\event\Event.h" />
     <ClInclude Include="..\base\event\EventTouch.h" />
-    <ClInclude Include="..\base\MatrixControl.h" />
+    <ClInclude Include="..\base\Matrix.h" />
     <ClInclude Include="..\base\Ref.h" />
     <ClInclude Include="..\math\Geometry.h" />
     <ClInclude Include="..\math\Mat4.h" />
@@ -166,6 +169,9 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
     <ClInclude Include="..\platform\win32\Application-win32.h" />
     <ClInclude Include="..\platform\win32\GL-win32.h" />
     <ClInclude Include="..\platform\win32\PlatformDefine-win32.h" />
+    <ClInclude Include="..\renderer\GLStateCache.h" />
+    <ClInclude Include="..\renderer\Renderer.h" />
+    <ClInclude Include="..\renderer\Texture2D.h" />
     <ClInclude Include="..\simple2d.h" />
   </ItemGroup>
   <ItemGroup>

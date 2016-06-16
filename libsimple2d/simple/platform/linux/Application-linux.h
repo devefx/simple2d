@@ -12,7 +12,27 @@ NS_BEGIN
 class DLL Application : public ApplicationProtocol
 {
 public:
+    Application();
 
+    virtual ~Application();
+
+    int run();
+
+    static Application* getInstance();
+
+    void setAnimationInterval(double interval);
+
+    virtual LanguageType getCurrentLanguage();
+
+    virtual const char * getCurrentLanguageCode();
+
+    virtual Platform getTargetPlatform();
+
+    virtual bool openURL(const std::string &url);
+protected:
+    long       _animationInterval;
+
+    static Application * sm_pSharedApplication;
 };
 
 NS_END

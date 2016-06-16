@@ -28,14 +28,18 @@ Director::Director()
 
 bool Director::init()
 {
+    setDefaultValues();
 
     _purgeDirectorInNextLoop = false;
 
     _restartDirectorInNextLoop = false;
 
-    _matrixControl = new MatrixControl();
+    _matrix = Matrix::getInstance();
 
     _openGLView = nullptr;
+
+    
+    _renderer = new (std::nothrow) Renderer;
 
     return true;
 }
@@ -46,6 +50,45 @@ Director::~Director()
    
     s_SharedDirector = nullptr;
 }
+
+void Director::setDefaultValues(void)
+{
+
+}
+
+void Director::setGLDefaultValues()
+{
+
+}
+
+void Director::drawScene()
+{
+    //
+
+    if (_openGLView)
+    {
+        _openGLView->pollEvents();
+    }
+
+    //
+
+    _renderer->clear();
+
+    //
+
+    _renderer->render();
+
+    //
+
+    if (_openGLView)
+    {
+        _openGLView->swapBuffers();
+    }
+
+    //
+}
+
+//
 
 void Director::setOpenGLView(GLView *openGLView)
 {
@@ -58,11 +101,31 @@ void Director::setOpenGLView(GLView *openGLView)
         _openGLView = openGLView;
         _openGLView->retain();
 
+        //
 
         _isStatusLabelUpdated = true;
 
+        //
+
+        _renderer->initGLView();
+
+        //
     }
 }
+
+//
+
+void Director::setAlphaBlending(bool on)
+{
+
+}
+
+void Director::setDepthTest(bool on)
+{
+
+}
+
+//
 
 void Director::end()
 {
@@ -145,6 +208,7 @@ void DisplayLinkDirector::mainLoop()
     }
     else if (!_invalid)
     {
+        drawScene();
 
         PoolManager::getInstance()->getCurrentPool()->clear();
     }

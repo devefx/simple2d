@@ -7,6 +7,7 @@
 #include <string>
 
 #if TARGET_PLATFORM == PLATFORM_WIN32
+    #define WIN32_LEAN_AND_MEAN
     #include <windows.h>
 #elif TARGET_PLATFORM == PLATFORM_MAC
     typedef void* id;

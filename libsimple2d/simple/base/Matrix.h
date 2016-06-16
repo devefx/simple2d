@@ -26,12 +26,14 @@ enum class MATRIX_STACK_TYPE
 };
 
 
-class DLL MatrixControl
+class DLL Matrix
 {
 public:
-    MatrixControl();
+    Matrix();
 
-    ~MatrixControl();
+    ~Matrix();
+
+    static Matrix* getInstance();
 
     void initMatrixStack();
 

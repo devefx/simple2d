@@ -5,7 +5,8 @@
 #include "platform/GL.h"
 #include "platform/GLView.h"
 #include "base/Ref.h"
-#include "base/MatrixControl.h"
+#include "base/Matrix.h"
+#include "renderer/Renderer.h"
 
 /**
  * @addtogroup base
@@ -56,7 +57,19 @@ public:
 
     virtual void startAnimation() = 0;
 
+    void drawScene();
+
     //
+
+    void setDefaultValues();
+
+    void setGLDefaultValues();
+
+    void setAlphaBlending(bool on);
+
+    //
+
+    void setDepthTest(bool on);
 
     virtual void mainLoop() = 0;
 
@@ -71,7 +84,7 @@ protected:
     bool _restartDirectorInNextLoop; // this flag will be set to true in restart()
 
 
-    MatrixControl *_matrixControl;
+    Matrix *_matrix;
 
 
     GLView *_openGLView;
@@ -82,6 +95,8 @@ protected:
 
     double _animationInterval;
     double _oldAnimationInterval;
+
+    Renderer *_renderer;
 
     bool _isStatusLabelUpdated;
 
