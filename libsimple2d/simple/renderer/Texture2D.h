@@ -6,6 +6,7 @@
 #include "base/Ref.h"
 #include "math/Geometry.h"
 #include "platform/GL.h"
+#include "renderer/GLProgram.h"
 
 #if defined(_MSC_VER) || defined(__MINGW32__)
     #include <BaseTsd.h>
@@ -119,7 +120,18 @@ public:
 
     bool initWithMipmaps(MipmapInfo* mipmaps, int mipmapsNum, Texture2D::PixelFormat pixelFormat, int pixelsWide, int pixelsHigh);
 
+    bool updateWithData(const void *data,int offsetX,int offsetY,int width,int height);
+
     //
+
+    /** Get content size. */
+    const Size& getContentSizeInPixels();
+
+    /** Whether or not the texture has their Alpha premultiplied. */
+    bool hasPremultipliedAlpha() const;
+
+    /** Whether or not the texture has mip maps.*/
+    bool hasMipmaps() const;
 
     /** Gets the pixel format of the texture. */
     Texture2D::PixelFormat getPixelFormat() const;
@@ -146,7 +158,14 @@ public:
     /** Get the texture content size.*/
     Size getContentSize() const;
 
-    //
+    /** Set a shader program to the texture.
+
+     It's used by drawAtPoint and drawInRect
+     */
+    void setGLProgram(GLProgram* program);
+
+    /** Get a shader program from the texture.*/
+    GLProgram* getGLProgram() const;
 
 public:
     /** Get pixel info map, the key-value pairs is PixelFormat and PixelFormatInfo.*/
@@ -180,7 +199,8 @@ protected:
     /** whether or not the texture has mip maps*/
     bool _hasMipmaps;
 
-    //
+    /** shader program used by drawAtPoint and drawInRect */
+    GLProgram* _shaderProgram;
 
     static const PixelFormatInfoMap _pixelFormatInfoTables;
 

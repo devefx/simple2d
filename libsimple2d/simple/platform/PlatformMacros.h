@@ -34,5 +34,18 @@
 
 
 
+#ifndef SIMPLE2D_DEBUG
+#define LOG(...)       do {} while (0)
+#define LOGINFO(...)   do {} while (0)
+#define LOGERROR(...)  do {} while (0)
+#define LOGWARN(...)   do {} while (0)
+#else// FIXME
+#define LOG(...)       do {} while (0)
+#define LOGINFO(...)   do {} while (0)
+#define LOGERROR(...)  do {} while (0)
+#define LOGWARN(...)   do {} while (0)
+#endif // !SIMPLE2D_DEBUG
+
+
 
 #endif // !__PLATFORM_MACROS_H__

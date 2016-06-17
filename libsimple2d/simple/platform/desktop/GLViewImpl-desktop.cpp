@@ -184,7 +184,8 @@ bool GLViewImpl::initWithRect(const std::string& viewName, int width, int height
     int w = rect.right - rect.left;
     int h = rect.bottom - rect.top;
 
-    MoveWindow(getWin32Window(), (cx - w) / 2, (cy - h) / 2, w, h, TRUE);
+    SetWindowPos(getWin32Window(), NULL, (cx - w) / 2, (cy - h) / 2, w, h, SWP_SHOWWINDOW );
+   // MoveWindow(getWin32Window(), (cx - w) / 2, (cy - h) / 2, w, h, TRUE);
 #endif
 
     glfwMakeContextCurrent(_mainWindow);
@@ -332,7 +333,7 @@ void GLViewImpl::setScissorInPoints(float x , float y , float w , float h)
 
 void GLViewImpl::onGLFWError(int errorID, const char* errorDesc)
 {
-
+    LOGERROR("GLFWError #%d Happen, %s\n", errorID, errorDesc);
 }
 
 void GLViewImpl::onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int modify)

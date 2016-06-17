@@ -73,7 +73,8 @@ Texture2D::Texture2D()
 
 Texture2D::~Texture2D()
 {
-
+    LOGINFO("deallocing Texture2D: %p - id=%u", this, _name);
+    SAFE_RELEASE(_shaderProgram);
 
     if (_name)
     {
@@ -117,7 +118,10 @@ Size Texture2D::getContentSize() const
     return ret;
 }
 
-//
+const Size& Texture2D::getContentSizeInPixels()
+{
+    return _contentSize;
+}
 
 GLfloat Texture2D::getMaxS() const
 {
@@ -139,7 +143,27 @@ void Texture2D::setMaxT(GLfloat maxT)
     _maxT = maxT;
 }
 
-//
+GLProgram* Texture2D::getGLProgram() const
+{
+    return _shaderProgram;
+}
+
+void Texture2D::setGLProgram(GLProgram* shaderProgram)
+{
+    SAFE_RETAIN(shaderProgram);
+    SAFE_RELEASE(_shaderProgram);
+    _shaderProgram = shaderProgram;
+}
+
+bool Texture2D::hasPremultipliedAlpha() const
+{
+    return _hasPremultipliedAlpha;
+}
+
+bool Texture2D::hasMipmaps() const
+{
+    return _hasMipmaps;
+}
 
 bool Texture2D::initWithData(const void *data, ssize_t dataLen, Texture2D::PixelFormat pixelFormat, int pixelsWide, int pixelsHigh)
 {
@@ -151,21 +175,32 @@ bool Texture2D::initWithData(const void *data, ssize_t dataLen, Texture2D::Pixel
 
 bool Texture2D::initWithMipmaps(MipmapInfo* mipmaps, int mipmapsNum, PixelFormat pixelFormat, int pixelsWide, int pixelsHigh)
 {
+    //the pixelFormat must be a certain value 
+    SIMPLE2D_ASSERT(pixelFormat != PixelFormat::NONE && pixelFormat != PixelFormat::AUTO, "the \"pixelFormat\" param must be a certain value!");
+    SIMPLE2D_ASSERT(pixelsWide > 0 && pixelsHigh > 0, "Invalid size");
+
     if (mipmapsNum < 0)
     {
-        //
+        LOG("WARNING: mipmap number is less than 1");
         return false;
     }
 
     if(_pixelFormatInfoTables.find(pixelFormat) == _pixelFormatInfoTables.end())
     {
-        //
+        LOG("WARNING: unsupported pixelformat: %lx", (unsigned long) pixelFormat);
         return false;
     }
 
     const PixelFormatInfo& info = _pixelFormatInfoTables.at(pixelFormat);
 
-    //
+    if (info.compressed/* && !Configuration::getInstance()->supportsPVRTC()
+                        && !Configuration::getInstance()->supportsETC()
+                        && !Configuration::getInstance()->supportsS3TC()
+                        && !Configuration::getInstance()->supportsATITC()*/)
+    {
+        LOG("WARNING: PVRTC/ETC images are not supported");
+        return false;
+    }
 
     if (mipmapsNum == 1 && !info.compressed)
     {
@@ -193,7 +228,11 @@ bool Texture2D::initWithMipmaps(MipmapInfo* mipmaps, int mipmapsNum, PixelFormat
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     }
 
-    releaseGLTexture();
+    if(_name != 0)
+    {
+        GL::deleteTexture(_name);
+        _name = 0;
+    }
 
     glGenTextures(1, &_name);
     GL::bindTexture2D(_name);
@@ -217,7 +256,7 @@ bool Texture2D::initWithMipmaps(MipmapInfo* mipmaps, int mipmapsNum, PixelFormat
     GLenum err = glGetError();
     if (err != GL_NO_ERROR)
     {
-        //
+        LOG("OpenGL error 0x%04X in %s %s %d\n", err, __FILE__, __FUNCTION__, __LINE__);
     }
 
     // Specify OpenGL texture image
@@ -255,7 +294,17 @@ bool Texture2D::initWithMipmaps(MipmapInfo* mipmaps, int mipmapsNum, PixelFormat
     return true;
 }
 
-
+bool Texture2D::updateWithData(const void *data,int offsetX,int offsetY,int width,int height)
+{
+    if (_name)
+    {
+        GL::bindTexture2D(_name);
+        const PixelFormatInfo& info = _pixelFormatInfoTables.at(_pixelFormat);
+        glTexSubImage2D(GL_TEXTURE_2D, 0, offsetX, offsetY, width, height, info.format, info.type, data);
+        return true;
+    }
+    return false;
+}
 
 
 

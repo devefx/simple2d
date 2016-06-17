@@ -34,6 +34,10 @@
     #endif
 #endif // !NULL
 
+#ifdef _DEBUG
+#define SIMPLE2D_DEBUG 1
+#endif // _DEBUG
+
 #if _MSC_VER > 1800
 #pragma comment(lib,"glfw3-2015.lib")
 #else
