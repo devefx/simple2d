@@ -52,7 +52,7 @@ const char* GLProgram::ATTRIBUTE_NAME_BLEND_INDEX = "a_blendIndex";
 
 
 
-GLProgram* createWithByteArrays(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray)
+GLProgram* GLProgram::createWithByteArrays(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray)
 {
     auto ret = new (std::nothrow) GLProgram();
     if (ret && ret->initWithByteArrays(vShaderByteArray, fShaderByteArray))
@@ -67,7 +67,7 @@ GLProgram* createWithByteArrays(const GLchar* vShaderByteArray, const GLchar* fS
     return nullptr;
 }
 
-GLProgram* createWithFilenames(const std::string& vShaderFilename, const std::string& fShaderFilename)
+GLProgram* GLProgram::createWithFilenames(const std::string& vShaderFilename, const std::string& fShaderFilename)
 {
     auto ret = new (std::nothrow) GLProgram();
     if (ret && ret->initWithFilenames(vShaderFilename, fShaderFilename))

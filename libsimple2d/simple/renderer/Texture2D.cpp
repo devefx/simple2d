@@ -306,6 +306,13 @@ bool Texture2D::updateWithData(const void *data,int offsetX,int offsetY,int widt
     return false;
 }
 
+//
 
+const Texture2D::PixelFormatInfoMap& Texture2D::getPixelFormatInfoMap()
+{
+	return _pixelFormatInfoTables;
+}
+
+//
 
 NS_END
