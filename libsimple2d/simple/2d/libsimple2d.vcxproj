@@ -139,6 +139,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(Ou
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\base\AutoreleasePool.h" />
+    <ClInclude Include="..\base\Data.h" />
     <ClInclude Include="..\base\Director.h" />
     <ClInclude Include="..\base\event\Event.h" />
     <ClInclude Include="..\base\event\EventTouch.h" />

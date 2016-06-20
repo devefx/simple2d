@@ -3,8 +3,6 @@
 #include "base/AutoreleasePool.h"
 #include "platform/Application.h"
 
-using namespace std;
-
 NS_BEGIN
 
 #define defaultFPS  60

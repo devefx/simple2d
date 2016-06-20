@@ -49,15 +49,15 @@
     <Filter Include="base\event">
       <UniqueIdentifier>{396af7f3-a228-412b-9fda-942c3e3542c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="base\finish">
+      <UniqueIdentifier>{96610098-c6cd-449d-8b40-027f2222355f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\finish">
+      <UniqueIdentifier>{0de126ed-a021-4502-ba05-1fc595f1577a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\simple2d.cpp" />
-    <ClCompile Include="..\base\Ref.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\base\AutoreleasePool.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
     <ClCompile Include="..\platform\GLView.cpp">
       <Filter>platform</Filter>
     </ClCompile>
@@ -124,16 +124,16 @@
     <ClCompile Include="..\renderer\Shaders.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
+    <ClCompile Include="..\base\Ref.cpp">
+      <Filter>base\finish</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\AutoreleasePool.cpp">
+      <Filter>base\finish</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\simple2d.h" />
-    <ClInclude Include="..\platform\PlatformConfig.h">
-      <Filter>platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\platform\PlatformMacros.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\PlatformDefine.h">
       <Filter>platform</Filter>
     </ClInclude>
     <ClInclude Include="..\platform\win32\PlatformDefine-win32.h">
@@ -151,9 +151,6 @@
     <ClInclude Include="..\platform\mac\PlatformDefine-mac.h">
       <Filter>platform\mac</Filter>
     </ClInclude>
-    <ClInclude Include="..\platform\GL.h">
-      <Filter>platform</Filter>
-    </ClInclude>
     <ClInclude Include="..\platform\android\GL-android.h">
       <Filter>platform\android</Filter>
     </ClInclude>
@@ -169,20 +166,11 @@
     <ClInclude Include="..\platform\win32\GL-win32.h">
       <Filter>platform\win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\base\Ref.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\base\AutoreleasePool.h">
-      <Filter>base</Filter>
-    </ClInclude>
     <ClInclude Include="..\platform\GLView.h">
       <Filter>platform</Filter>
     </ClInclude>
     <ClInclude Include="..\platform\desktop\GLViewImpl-desktop.h">
       <Filter>platform\desktop</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\Application.h">
-      <Filter>platform</Filter>
     </ClInclude>
     <ClInclude Include="..\platform\win32\Application-win32.h">
       <Filter>platform\win32</Filter>
@@ -198,12 +186,6 @@
     </ClInclude>
     <ClInclude Include="..\platform\android\Application-android.h">
       <Filter>platform\android</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\ApplicationProtocol.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\Common.h">
-      <Filter>platform</Filter>
     </ClInclude>
     <ClInclude Include="..\math\Geometry.h">
       <Filter>math</Filter>
@@ -258,6 +240,33 @@
     </ClInclude>
     <ClInclude Include="..\renderer\Shaders.h">
       <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\Ref.h">
+      <Filter>base\finish</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\AutoreleasePool.h">
+      <Filter>base\finish</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\Data.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\ApplicationProtocol.h">
+      <Filter>platform\finish</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\Application.h">
+      <Filter>platform\finish</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\Common.h">
+      <Filter>platform\finish</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\GL.h">
+      <Filter>platform\finish</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\PlatformConfig.h">
+      <Filter>platform\finish</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\PlatformDefine.h">
+      <Filter>platform\finish</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

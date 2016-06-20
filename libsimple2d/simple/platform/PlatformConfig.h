@@ -8,7 +8,7 @@
 #define PLATFORM_MAC        4
 #define PLATFORM_LINUX      5
 
-#define TARGET_PLATFORM     PLATFORM_UNKNOWN
+#define TARGET_PLATFORM     PLATFORM_MAC
 
 // ios
 #if defined(__APPLE__) && defined(TARGET_OS_IPHONE)
