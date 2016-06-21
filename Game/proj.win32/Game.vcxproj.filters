@@ -2,29 +2,20 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="win32">
-      <UniqueIdentifier>{212a1f0d-9777-41a9-a636-04bb376957d5}</UniqueIdentifier>
+      <UniqueIdentifier>{cf5e79cc-8bf3-4a85-aee7-2dd9765bf47a}</UniqueIdentifier>
     </Filter>
     <Filter Include="src">
-      <UniqueIdentifier>{a7a859c2-34db-4657-8364-5155fcf261e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="resource">
-      <UniqueIdentifier>{3cc07a3e-2eae-4799-b637-62e2e0b5668f}</UniqueIdentifier>
+      <UniqueIdentifier>{6510d864-0da3-4fa4-ae52-bca9b2773823}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

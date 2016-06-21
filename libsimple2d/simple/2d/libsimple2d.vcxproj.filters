@@ -2,277 +2,59 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="2d">
-      <UniqueIdentifier>{f6c8dc01-3077-4c0f-b723-9906fab2bef0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="audioengine">
-      <UniqueIdentifier>{804f61d3-c310-4bf7-be0a-d3ace72c12ed}</UniqueIdentifier>
+      <UniqueIdentifier>{a486489e-a512-42fb-8692-a38181fb4ed5}</UniqueIdentifier>
     </Filter>
     <Filter Include="base">
-      <UniqueIdentifier>{db2398de-0abe-49a6-8fe2-d2e9de15aa5b}</UniqueIdentifier>
+      <UniqueIdentifier>{e5ed5bc4-beec-4f3b-9d0f-6d04afbf5cf9}</UniqueIdentifier>
     </Filter>
     <Filter Include="math">
-      <UniqueIdentifier>{43446186-855f-4622-87fc-efe1ebcad52b}</UniqueIdentifier>
+      <UniqueIdentifier>{e0b3dd11-7496-4d41-a706-945492766973}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform">
-      <UniqueIdentifier>{f3d13326-1927-4e5b-8bd2-2d8f14ce9197}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="renderer">
-      <UniqueIdentifier>{421fa0b4-1e27-4952-8254-aca9d671dfb0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="external">
-      <UniqueIdentifier>{40453ebc-2b0a-46e5-a06c-4111b17b700d}</UniqueIdentifier>
+    <Filter Include="audio">
+      <UniqueIdentifier>{f11d2948-1d27-4a99-aa11-2623d608d7d9}</UniqueIdentifier>
     </Filter>
     <Filter Include="network">
-      <UniqueIdentifier>{58241245-798c-4912-82e8-47f564a2343a}</UniqueIdentifier>
+      <UniqueIdentifier>{466a425a-49b3-48af-9f6c-cbf2a1da21f3}</UniqueIdentifier>
     </Filter>
     <Filter Include="ui">
-      <UniqueIdentifier>{e9c60ee1-b2e8-4dd2-8fb3-bb255b2f7799}</UniqueIdentifier>
+      <UniqueIdentifier>{830d8ea8-8c8b-40b6-9bb2-a0d478bb86fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform\mac">
-      <UniqueIdentifier>{595380b7-d404-43f4-ab22-a293abadd04f}</UniqueIdentifier>
+    <Filter Include="renderer">
+      <UniqueIdentifier>{bff717c8-24da-4502-905b-9877144db0c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform\android">
-      <UniqueIdentifier>{556cb002-2ffe-4eaf-9e3e-174ad920e015}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="platform\ios">
-      <UniqueIdentifier>{866827d3-cf7f-44f6-87ac-32b0fc9a1ef6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="platform\linux">
-      <UniqueIdentifier>{ba97ac95-e324-4d9e-96c4-6f41d565ec72}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="platform\win32">
-      <UniqueIdentifier>{e800515a-c30a-40a7-a3bb-78704c769544}</UniqueIdentifier>
+    <Filter Include="platform">
+      <UniqueIdentifier>{1d2c4a41-416b-477d-8610-1e4cea4e0540}</UniqueIdentifier>
     </Filter>
     <Filter Include="platform\desktop">
-      <UniqueIdentifier>{f258feac-6aaf-4799-ae8d-e5cd21b72c57}</UniqueIdentifier>
+      <UniqueIdentifier>{e97c57e2-5d60-4047-ad82-afcffc00f9bc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="base\event">
-      <UniqueIdentifier>{396af7f3-a228-412b-9fda-942c3e3542c8}</UniqueIdentifier>
+    <Filter Include="platform\win32">
+      <UniqueIdentifier>{75cd46d5-0403-4d8f-9781-e375efab4462}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\simple2d.cpp" />
-    <ClCompile Include="..\base\Ref.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\base\AutoreleasePool.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\platform\GLView.cpp">
-      <Filter>platform</Filter>
-    </ClCompile>
-    <ClCompile Include="..\platform\desktop\GLViewImpl-desktop.cpp">
-      <Filter>platform\desktop</Filter>
-    </ClCompile>
-    <ClCompile Include="..\platform\win32\Application-win32.cpp">
-      <Filter>platform\win32</Filter>
-    </ClCompile>
-    <ClCompile Include="..\platform\linux\Application-linux.cpp">
-      <Filter>platform\linux</Filter>
-    </ClCompile>
-    <ClCompile Include="..\platform\ios\Application-ios.cpp">
-      <Filter>platform\ios</Filter>
-    </ClCompile>
-    <ClCompile Include="..\platform\android\Application-android.cpp">
-      <Filter>platform\android</Filter>
-    </ClCompile>
-    <ClCompile Include="..\math\Geometry.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\math\Vec2.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\math\Vec3.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\math\Vec4.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\base\Director.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\math\Mat4.cpp">
-      <Filter>math</Filter>
-    </ClCompile>
-    <ClCompile Include="..\base\event\Event.cpp">
-      <Filter>base\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\base\event\EventTouch.cpp">
-      <Filter>base\event</Filter>
-    </ClCompile>
-    <ClCompile Include="..\platform\mac\Application-mac.mm">
-      <Filter>platform\mac</Filter>
-    </ClCompile>
-    <ClCompile Include="..\renderer\Renderer.cpp">
+    <ClInclude Include="..\renderer\Renderer.h">
       <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\renderer\Texture2D.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\renderer\GLStateCache.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\base\Matrix.cpp">
+    </ClInclude>
+    <ClInclude Include="..\base\Types.h">
       <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="..\renderer\GLProgram.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\renderer\GLProgramCache.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\renderer\Shaders.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\simple2d.h" />
-    <ClInclude Include="..\platform\PlatformConfig.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\PlatformMacros.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\PlatformDefine.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\win32\PlatformDefine-win32.h">
-      <Filter>platform\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\android\PlatformDefine-android.h">
-      <Filter>platform\android</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\ios\PlatformDefine-ios.h">
-      <Filter>platform\ios</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\linux\PlatformDefine-linux.h">
-      <Filter>platform\linux</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\mac\PlatformDefine-mac.h">
-      <Filter>platform\mac</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\GL.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\android\GL-android.h">
-      <Filter>platform\android</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\ios\GL-ios.h">
-      <Filter>platform\ios</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\linux\GL-linux.h">
-      <Filter>platform\linux</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\mac\GL-mac.h">
-      <Filter>platform\mac</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\win32\GL-win32.h">
-      <Filter>platform\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\base\Ref.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\base\AutoreleasePool.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\GLView.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\desktop\GLViewImpl-desktop.h">
-      <Filter>platform\desktop</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\Application.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\win32\Application-win32.h">
-      <Filter>platform\win32</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\mac\Application-mac.h">
-      <Filter>platform\mac</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\linux\Application-linux.h">
-      <Filter>platform\linux</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\ios\Application-ios.h">
-      <Filter>platform\ios</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\android\Application-android.h">
-      <Filter>platform\android</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\ApplicationProtocol.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\platform\Common.h">
-      <Filter>platform</Filter>
-    </ClInclude>
-    <ClInclude Include="..\math\Geometry.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\math\Vec2.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\math\MathBase.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\math\Math.h">
-      <Filter>math</Filter>
     </ClInclude>
     <ClInclude Include="..\math\Vec3.h">
       <Filter>math</Filter>
     </ClInclude>
-    <ClInclude Include="..\math\Vec4.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\base\Director.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\math\Mat4.h">
-      <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\base\event\Event.h">
-      <Filter>base\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\base\event\EventTouch.h">
-      <Filter>base\event</Filter>
-    </ClInclude>
-    <ClInclude Include="..\renderer\Renderer.h">
-      <Filter>renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\renderer\Texture2D.h">
-      <Filter>renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\renderer\GLStateCache.h">
-      <Filter>renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\base\Matrix.h">
-      <Filter>base</Filter>
-    </ClInclude>
-    <ClInclude Include="..\base\Macros.h">
-      <Filter>base</Filter>
-    </ClInclude>
     <ClInclude Include="..\renderer\GLProgram.h">
-      <Filter>renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\renderer\GLProgramCache.h">
-      <Filter>renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\renderer\Shaders.h">
       <Filter>renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="simple2d.def" />
-    <None Include="..\math\Vec2.inl">
+    <ClCompile Include="..\renderer\Renderer.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\math\Vec3.cpp">
       <Filter>math</Filter>
-    </None>
-    <None Include="..\math\Vec3.inl">
-      <Filter>math</Filter>
-    </None>
-    <None Include="..\math\Vec4.inl">
-      <Filter>math</Filter>
-    </None>
-    <None Include="..\math\Mat4.inl">
-      <Filter>math</Filter>
-    </None>
+    </ClCompile>
+    <ClCompile Include="..\base\Types.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

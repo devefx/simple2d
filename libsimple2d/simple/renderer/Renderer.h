@@ -1,16 +1,10 @@
 #ifndef __RENDERER_H__
 #define __RENDERER_H__
 
-#include "platform/PlatformMacros.h"
-#include "platform/GL.h"
 
-/**
- * @addtogroup renderer
- * @{
- */
-NS_BEGIN
-
-
+#define DLL __declspec(dllexport)
+#include "base/Types.h"
+#include "renderer/GLProgram.h"
 
 class DLL Renderer
 {
@@ -19,18 +13,13 @@ public:
     static const int VBO_SIZE = 65536;
     /**The max numer of indices in a index buffer.*/
     static const int INDEX_VBO_SIZE = VBO_SIZE * 6 / 4;
-    /**The rendercommands which can be batched will be saved into a list, this is the reversed size of this list.*/
-    static const int BATCH_QUADCOMMAND_RESEVER_SIZE = 64;
-    /**Reserved for material id, which means that the command could not be batched.*/
-    static const int MATERIAL_ID_DO_NOT_BATCH = 0;
+
 
     Renderer();
 
     ~Renderer();
 
     void initGLView();
-
-    //
 
     void render();
 
@@ -40,15 +29,24 @@ public:
 
 protected:
 
+    void setupBuffer();
 
 
+
+    // for QuadCommand
+    V3F_C4B_T2F _quadVerts[VBO_SIZE];
+    GLushort _quadIndices[INDEX_VBO_SIZE];
+    GLuint _quadVAO;
+    GLuint _quadbuffersVBO[2]; //0: vertex  1: indices
+    int _numberQuads;
+
+    bool _glViewAssigned;
+
+    // state
+    long _drawnBatches;
+    long _drawnVertices;
+
+    bool _isRendering;
 };
 
-
-NS_END
-/**
- end of renderer group
- @}
- */
-
-#endif // !__RENDERER_H__
+#endif // !__Renderer_h__

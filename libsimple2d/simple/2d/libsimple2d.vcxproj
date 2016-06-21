@@ -10,47 +10,78 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\base\Types.h" />
+    <ClInclude Include="..\math\Vec3.h" />
+    <ClInclude Include="..\renderer\GLProgram.h" />
+    <ClInclude Include="..\renderer\Renderer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\base\Types.cpp" />
+    <ClCompile Include="..\math\Vec3.cpp" />
+    <ClCompile Include="..\renderer\Renderer.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4896DFC9-C51A-452A-B6F7-FABC292B7D96}</ProjectGuid>
+    <ProjectGuid>{61AA474A-28D6-48F7-B44B-7F2433794D82}</ProjectGuid>
     <RootNamespace>libsimple2d</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v110_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '10.0'">v100</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0'">v110</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v110_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="simple2d_headers.props" />
     <Import Project="simple2d.props" />
+    <Import Project="simple2d_headers.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="simple2d_headers.props" />
     <Import Project="simple2d.props" />
+    <Import Project="simple2d_headers.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration).win32\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration).win32\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration).win32\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration).win32\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
-    <IntDir>$(Configuration).win32\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration).win32\</OutDir>
-    <IntDir>$(Configuration).win32\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -62,6 +93,8 @@
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <PreprocessorDefinitions>WIN32;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -107,87 +140,6 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\glfw3\prebuilt\win32\*.*" "$(OutDir)"
 xcopy /Y /Q "$(ProjectDir)..\..\external\win32-specific\gles\prebuilt\*.*" "$(OutDir)"</Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\base\AutoreleasePool.cpp" />
-    <ClCompile Include="..\base\Director.cpp" />
-    <ClCompile Include="..\base\event\Event.cpp" />
-    <ClCompile Include="..\base\event\EventTouch.cpp" />
-    <ClCompile Include="..\base\Matrix.cpp" />
-    <ClCompile Include="..\base\Ref.cpp" />
-    <ClCompile Include="..\math\Geometry.cpp" />
-    <ClCompile Include="..\math\Mat4.cpp" />
-    <ClCompile Include="..\math\Vec2.cpp" />
-    <ClCompile Include="..\math\Vec3.cpp" />
-    <ClCompile Include="..\math\Vec4.cpp" />
-    <ClCompile Include="..\platform\android\Application-android.cpp" />
-    <ClCompile Include="..\platform\desktop\GLViewImpl-desktop.cpp" />
-    <ClCompile Include="..\platform\GLView.cpp" />
-    <ClCompile Include="..\platform\ios\Application-ios.cpp" />
-    <ClCompile Include="..\platform\linux\Application-linux.cpp" />
-    <ClCompile Include="..\platform\mac\Application-mac.mm" />
-    <ClCompile Include="..\platform\win32\Application-win32.cpp" />
-    <ClCompile Include="..\renderer\GLProgram.cpp" />
-    <ClCompile Include="..\renderer\GLProgramCache.cpp" />
-    <ClCompile Include="..\renderer\GLStateCache.cpp" />
-    <ClCompile Include="..\renderer\Renderer.cpp" />
-    <ClCompile Include="..\renderer\Shaders.cpp" />
-    <ClCompile Include="..\renderer\Texture2D.cpp" />
-    <ClCompile Include="..\simple2d.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\base\AutoreleasePool.h" />
-    <ClInclude Include="..\base\Director.h" />
-    <ClInclude Include="..\base\event\Event.h" />
-    <ClInclude Include="..\base\event\EventTouch.h" />
-    <ClInclude Include="..\base\Macros.h" />
-    <ClInclude Include="..\base\Matrix.h" />
-    <ClInclude Include="..\base\Ref.h" />
-    <ClInclude Include="..\math\Geometry.h" />
-    <ClInclude Include="..\math\Mat4.h" />
-    <ClInclude Include="..\math\Math.h" />
-    <ClInclude Include="..\math\MathBase.h" />
-    <ClInclude Include="..\math\Vec2.h" />
-    <ClInclude Include="..\math\Vec3.h" />
-    <ClInclude Include="..\math\Vec4.h" />
-    <ClInclude Include="..\platform\android\Application-android.h" />
-    <ClInclude Include="..\platform\android\GL-android.h" />
-    <ClInclude Include="..\platform\android\PlatformDefine-android.h" />
-    <ClInclude Include="..\platform\Application.h" />
-    <ClInclude Include="..\platform\ApplicationProtocol.h" />
-    <ClInclude Include="..\platform\Common.h" />
-    <ClInclude Include="..\platform\desktop\GLViewImpl-desktop.h" />
-    <ClInclude Include="..\platform\GL.h" />
-    <ClInclude Include="..\platform\GLView.h" />
-    <ClInclude Include="..\platform\ios\Application-ios.h" />
-    <ClInclude Include="..\platform\ios\GL-ios.h" />
-    <ClInclude Include="..\platform\ios\PlatformDefine-ios.h" />
-    <ClInclude Include="..\platform\linux\Application-linux.h" />
-    <ClInclude Include="..\platform\linux\GL-linux.h" />
-    <ClInclude Include="..\platform\linux\PlatformDefine-linux.h" />
-    <ClInclude Include="..\platform\mac\Application-mac.h" />
-    <ClInclude Include="..\platform\mac\GL-mac.h" />
-    <ClInclude Include="..\platform\mac\PlatformDefine-mac.h" />
-    <ClInclude Include="..\platform\PlatformConfig.h" />
-    <ClInclude Include="..\platform\PlatformDefine.h" />
-    <ClInclude Include="..\platform\PlatformMacros.h" />
-    <ClInclude Include="..\platform\win32\Application-win32.h" />
-    <ClInclude Include="..\platform\win32\GL-win32.h" />
-    <ClInclude Include="..\platform\win32\PlatformDefine-win32.h" />
-    <ClInclude Include="..\renderer\GLProgram.h" />
-    <ClInclude Include="..\renderer\GLProgramCache.h" />
-    <ClInclude Include="..\renderer\GLStateCache.h" />
-    <ClInclude Include="..\renderer\Renderer.h" />
-    <ClInclude Include="..\renderer\Shaders.h" />
-    <ClInclude Include="..\renderer\Texture2D.h" />
-    <ClInclude Include="..\simple2d.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\math\Mat4.inl" />
-    <None Include="..\math\Vec2.inl" />
-    <None Include="..\math\Vec3.inl" />
-    <None Include="..\math\Vec4.inl" />
-    <None Include="simple2d.def" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

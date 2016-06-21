@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game.vcxproj", "{81917B88-1E0E-493A-828F-9120D36EAE58}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game.vcxproj", "{766722F2-FE62-4BF9-B36B-1E3231123C5E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsimple2d", "..\..\libsimple2d\simple\2d\libsimple2d.vcxproj", "{4896DFC9-C51A-452A-B6F7-FABC292B7D96}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsimple2d", "..\..\libsimple2d\simple\2d\libsimple2d.vcxproj", "{61AA474A-28D6-48F7-B44B-7F2433794D82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{81917B88-1E0E-493A-828F-9120D36EAE58}.Debug|Win32.ActiveCfg = Debug|Win32
-		{81917B88-1E0E-493A-828F-9120D36EAE58}.Debug|Win32.Build.0 = Debug|Win32
-		{81917B88-1E0E-493A-828F-9120D36EAE58}.Release|Win32.ActiveCfg = Release|Win32
-		{81917B88-1E0E-493A-828F-9120D36EAE58}.Release|Win32.Build.0 = Release|Win32
-		{4896DFC9-C51A-452A-B6F7-FABC292B7D96}.Debug|Win32.ActiveCfg = Debug|Win32
-		{4896DFC9-C51A-452A-B6F7-FABC292B7D96}.Debug|Win32.Build.0 = Debug|Win32
-		{4896DFC9-C51A-452A-B6F7-FABC292B7D96}.Release|Win32.ActiveCfg = Release|Win32
-		{4896DFC9-C51A-452A-B6F7-FABC292B7D96}.Release|Win32.Build.0 = Release|Win32
+		{766722F2-FE62-4BF9-B36B-1E3231123C5E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{766722F2-FE62-4BF9-B36B-1E3231123C5E}.Debug|Win32.Build.0 = Debug|Win32
+		{766722F2-FE62-4BF9-B36B-1E3231123C5E}.Release|Win32.ActiveCfg = Release|Win32
+		{766722F2-FE62-4BF9-B36B-1E3231123C5E}.Release|Win32.Build.0 = Release|Win32
+		{61AA474A-28D6-48F7-B44B-7F2433794D82}.Debug|Win32.ActiveCfg = Debug|Win32
+		{61AA474A-28D6-48F7-B44B-7F2433794D82}.Debug|Win32.Build.0 = Debug|Win32
+		{61AA474A-28D6-48F7-B44B-7F2433794D82}.Release|Win32.ActiveCfg = Release|Win32
+		{61AA474A-28D6-48F7-B44B-7F2433794D82}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
