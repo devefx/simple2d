@@ -2,8 +2,22 @@
 #define __GLSTATECACHE_H__
 
 #include <stdint.h>
+#if defined(__APPLE__)
+#import <OpenGL/gl.h>
+#import <OpenGL/glu.h>
+#import <OpenGL/glext.h>
+#elif defined(_WIN32)
 #include "GL/glew.h"
+#endif
+#if defined(__APPLE__)
+#define DLL __attribute__ ((visibility("default")))
+#elif defined(_WIN32)
+#ifdef _USRDLL
 #define DLL __declspec(dllexport)
+#else
+#define DLL __declspec(dllimport)
+#endif
+#endif
 
 namespace GL
 {

@@ -4,7 +4,15 @@
 #include <stdint.h>
 
 // temp
+#if defined(__APPLE__)
+#define DLL __attribute__ ((visibility("default")))
+#elif defined(_WIN32)
+#ifdef _USRDLL
 #define DLL __declspec(dllexport)
+#else
+#define DLL __declspec(dllimport)
+#endif
+#endif
 
 class DLL RenderCommand
 {

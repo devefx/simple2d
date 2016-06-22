@@ -16,10 +16,21 @@
 		AB0A1D991D192D5000A1D73C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0A1D981D192D5000A1D73C /* CoreVideo.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5B36FADE1D1AD1B0005E40D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B36FADA1D1AD1B0005E40D5 /* simple2d_libs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B36FAC51D1AD0D9005E40D5;
+			remoteInfo = "libsimple2d Mac";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		5B36FA7A1D195A95005E40D5 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = mac/Prefix.pch; sourceTree = "<group>"; };
+		5B36FADA1D1AD1B0005E40D5 /* simple2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = simple2d_libs.xcodeproj; path = ../../libsimple2d/build/simple2d_libs.xcodeproj; sourceTree = "<group>"; };
 		AB0A1D421D19262600A1D73C /* Game-desktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Game-desktop.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0A1D561D19269A00A1D73C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = mac/Info.plist; sourceTree = "<group>"; };
-		AB0A1D571D19269A00A1D73C /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = mac/Prefix.pch; sourceTree = "<group>"; };
 		AB0A1D591D1926A600A1D73C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = mac/main.cpp; sourceTree = "<group>"; };
 		AB0A1D8F1D1929B400A1D73C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		AB0A1D911D1929C500A1D73C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -44,13 +55,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B36FADB1D1AD1B0005E40D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5B36FADF1D1AD1B0005E40D5 /* libsimple2d Mac.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		AB0A1D371D1925D700A1D73C = {
 			isa = PBXGroup;
 			children = (
 				AB0A1D8E1D1928BE00A1D73C /* Classes */,
-				AB0A1D541D19264700A1D73C /* mac */,
 				AB0A1D931D1929CC00A1D73C /* Frameworks */,
+				AB0A1D541D19264700A1D73C /* mac */,
 				AB0A1D431D19262600A1D73C /* Products */,
+				5B36FADA1D1AD1B0005E40D5 /* simple2d_libs.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				AB0A1D561D19269A00A1D73C /* Info.plist */,
-				AB0A1D571D19269A00A1D73C /* Prefix.pch */,
+				5B36FA7A1D195A95005E40D5 /* Prefix.pch */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -143,12 +163,28 @@
 			mainGroup = AB0A1D371D1925D700A1D73C;
 			productRefGroup = AB0A1D431D19262600A1D73C /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5B36FADB1D1AD1B0005E40D5 /* Products */;
+					ProjectRef = 5B36FADA1D1AD1B0005E40D5 /* simple2d_libs.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				AB0A1D411D19262600A1D73C /* Game-desktop */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5B36FADF1D1AD1B0005E40D5 /* libsimple2d Mac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = "libsimple2d Mac.a";
+			remoteRef = 5B36FADE1D1AD1B0005E40D5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AB0A1D401D19262600A1D73C /* Resources */ = {
@@ -303,6 +339,7 @@
 				AB0A1D521D19262600A1D73C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

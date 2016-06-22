@@ -2,7 +2,13 @@
 #define __TYPES_H_
 
 #include "math/Vec3.h"
+#if defined(__APPLE__)
+#import <OpenGL/gl.h>
+#import <OpenGL/glu.h>
+#import <OpenGL/glext.h>
+#elif defined(_WIN32)
 #include "GL/glew.h"
+#endif
 
 
 struct Color4B;
@@ -124,7 +130,7 @@ struct DLL Color4F
  * A TEXCOORD composed of 2 floats: u, y
  * @since v3.0
  */
-struct DLL Tex2F {
+struct Tex2F {
     Tex2F(float _u, float _v): u(_u), v(_v) {}
 
     Tex2F(): u(0.f), v(0.f) {}
@@ -136,7 +142,7 @@ struct DLL Tex2F {
 /** @struct V3F_C4B_T2F
  * A Vec2 with a vertex point, a tex coord point and a color 4B.
  */
-struct DLL V3F_C4B_T2F
+struct V3F_C4B_T2F
 {
     /// vertices (3F)
     Vec3     vertices;            // 12 bytes
@@ -151,7 +157,7 @@ struct DLL V3F_C4B_T2F
 /** @struct V3F_C4B_T2F_Quad
  * 4 Vertex3FTex2FColor4B.
  */
-struct DLL V3F_C4B_T2F_Quad
+struct V3F_C4B_T2F_Quad
 {
     /// top left
     V3F_C4B_T2F    tl;

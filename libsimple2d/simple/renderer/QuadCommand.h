@@ -4,8 +4,15 @@
 #include "renderer/RenderCommand.h"
 
 // temp
-#define DLL __declspec(dllexport)
+#if defined(__APPLE__)
+#import <OpenGL/gl.h>
+#import <OpenGL/glu.h>
+#import <OpenGL/glext.h>
+#elif defined(_WIN32)
 #include "GL/glew.h"
+#endif
+#include <stddef.h>
+
 #include "base/Types.h"
 #include "math/Mat4.h"
 

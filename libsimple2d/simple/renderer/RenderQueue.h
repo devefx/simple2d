@@ -6,7 +6,13 @@
 #include "renderer/RenderCommand.h"
 
 //temp
+#if defined(__APPLE__)
+#import <OpenGL/gl.h>
+#import <OpenGL/glu.h>
+#import <OpenGL/glext.h>
+#elif defined(_WIN32)
 #include "GL/glew.h"
+#endif
 
 class RenderQueue
 {

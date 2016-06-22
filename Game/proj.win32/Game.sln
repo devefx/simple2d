@@ -1,7 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game.vcxproj", "{766722F2-FE62-4BF9-B36B-1E3231123C5E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{61AA474A-28D6-48F7-B44B-7F2433794D82} = {61AA474A-28D6-48F7-B44B-7F2433794D82}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsimple2d", "..\..\libsimple2d\simple\2d\libsimple2d.vcxproj", "{61AA474A-28D6-48F7-B44B-7F2433794D82}"
 EndProject

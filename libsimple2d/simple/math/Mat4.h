@@ -1,7 +1,6 @@
 #ifndef __MAT4_H__
 #define __MAT4_H__
 
-#define DLL __declspec(dllexport)
 #include "math/Vec3.h"
 
 class DLL Mat4
