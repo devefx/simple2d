@@ -12,14 +12,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\base\Types.h" />
+    <ClInclude Include="..\math\Mat4.h" />
     <ClInclude Include="..\math\Vec3.h" />
+    <ClInclude Include="..\renderer\CustomCommand.h" />
     <ClInclude Include="..\renderer\GLProgram.h" />
+    <ClInclude Include="..\renderer\GLStateCache.h" />
+    <ClInclude Include="..\renderer\QuadCommand.h" />
+    <ClInclude Include="..\renderer\RenderCommand.h" />
     <ClInclude Include="..\renderer\Renderer.h" />
+    <ClInclude Include="..\renderer\RenderQueue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\base\Types.cpp" />
+    <ClCompile Include="..\math\Mat4.cpp" />
     <ClCompile Include="..\math\Vec3.cpp" />
+    <ClCompile Include="..\renderer\CustomCommand.cpp" />
+    <ClCompile Include="..\renderer\GLProgram.cpp" />
+    <ClCompile Include="..\renderer\GLStateCache.cpp" />
+    <ClCompile Include="..\renderer\QuadCommand.cpp" />
+    <ClCompile Include="..\renderer\RenderCommand.cpp" />
     <ClCompile Include="..\renderer\Renderer.cpp" />
+    <ClCompile Include="..\renderer\RenderQueue.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{61AA474A-28D6-48F7-B44B-7F2433794D82}</ProjectGuid>
@@ -91,7 +104,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <PreprocessorDefinitions>WIN32;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_USRDLL;ENABLE_GL_STATE_CACHE;ENABLE_VAO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -100,7 +113,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>simple2d.def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
-      <IgnoreSpecificDefaultLibraries>libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>libc.lib;libcmt.lib;msvcrt.lib;libcd.lib;libcmtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreLinkEvent>

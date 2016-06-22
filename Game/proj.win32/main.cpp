@@ -4,6 +4,7 @@
 #include "glfw3.h"
 
 #include "renderer/Renderer.h"
+#include "renderer/CustomCommand.h"
 
 #if _MSC_VER > 1800
 #pragma comment(lib,"glfw3-2015.lib")
@@ -105,9 +106,28 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
     render->initGLView();
 
+
+    CustomCommand* command = new CustomCommand();
+    command->init(0, []() {
+        glBegin(GL_TRIANGLES);
+
+        glColor3f(1.0, 0.0, 0.0);    // Red
+        glVertex3f(0.0, 1.0, 0.0);
+
+        glColor3f(0.0, 1.0, 0.0);    // Green
+        glVertex3f(-1.0, -1.0, 0.0);
+
+        glColor3f(0.0, 0.0, 1.0);    // Blue
+        glVertex3f(1.0, -1.0, 0.0);
+
+        glEnd();
+    });
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(_mainWindow))
     {
+        render->addCommand(command);
+
         render->clear();
 
         render->render();

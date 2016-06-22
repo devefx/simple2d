@@ -148,4 +148,54 @@ struct DLL V3F_C4B_T2F
     Tex2F        texCoords;           // 8 bytes
 };
 
+/** @struct V3F_C4B_T2F_Quad
+ * 4 Vertex3FTex2FColor4B.
+ */
+struct DLL V3F_C4B_T2F_Quad
+{
+    /// top left
+    V3F_C4B_T2F    tl;
+    /// bottom left
+    V3F_C4B_T2F    bl;
+    /// top right
+    V3F_C4B_T2F    tr;
+    /// bottom right
+    V3F_C4B_T2F    br;
+};
+
+/** @struct BlendFunc
+ * Blend Function used for textures.
+ */
+struct DLL BlendFunc
+{
+    /** source blend function */
+    GLenum src;
+    /** destination blend function */
+    GLenum dst;
+
+    /** Blending disabled. Uses {GL_ONE, GL_ZERO} */
+    static const BlendFunc DISABLE;
+    /** Blending enabled for textures with Alpha premultiplied. Uses {GL_ONE, GL_ONE_MINUS_SRC_ALPHA} */
+    static const BlendFunc ALPHA_PREMULTIPLIED;
+    /** Blending enabled for textures with Alpha NON premultiplied. Uses {GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA} */
+    static const BlendFunc ALPHA_NON_PREMULTIPLIED;
+    /** Enables Additive blending. Uses {GL_SRC_ALPHA, GL_ONE} */
+    static const BlendFunc ADDITIVE;
+
+    bool operator==(const BlendFunc &a) const
+    {
+        return src == a.src && dst == a.dst;
+    }
+
+    bool operator!=(const BlendFunc &a) const
+    {
+        return src != a.src || dst != a.dst;
+    }
+
+    bool operator<(const BlendFunc &a) const
+    {
+        return src < a.src || (src == a.src && dst < a.dst);
+    }
+};
+
 #endif // !__TYPES_H_

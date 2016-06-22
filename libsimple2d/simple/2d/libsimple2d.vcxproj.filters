@@ -45,6 +45,24 @@
     <ClInclude Include="..\renderer\GLProgram.h">
       <Filter>renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\renderer\QuadCommand.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\RenderCommand.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\RenderQueue.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\CustomCommand.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\math\Mat4.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\GLStateCache.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\renderer\Renderer.cpp">
@@ -55,6 +73,27 @@
     </ClCompile>
     <ClCompile Include="..\base\Types.cpp">
       <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\QuadCommand.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\RenderQueue.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\RenderCommand.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\GLProgram.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\CustomCommand.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\math\Mat4.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\GLStateCache.cpp">
+      <Filter>renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
