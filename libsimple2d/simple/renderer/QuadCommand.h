@@ -54,7 +54,7 @@ protected:
 
     V3F_C4B_T2F_Quad* _quads;   // 顶点数据
 
-    int _quadsCount;        // 顶点数量
+    size_t _quadsCount;        // 顶点数量
 
     Mat4 _mv;               // modelView
 };

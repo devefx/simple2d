@@ -32,6 +32,10 @@
 		5B36FB0D1D1AD5D2005E40D5 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B36FB0C1D1AD5D2005E40D5 /* ApplicationServices.framework */; };
 		5B36FB0F1D1AD5D9005E40D5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B36FB0E1D1AD5D9005E40D5 /* Cocoa.framework */; };
 		5B36FB111D1AD5E1005E40D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B36FB101D1AD5E1005E40D5 /* QuartzCore.framework */; };
+		5B36FB1A1D1BFD66005E40D5 /* xxhash.c in Sources */ = {isa = PBXBuildFile; fileRef = 5B36FB181D1BFD66005E40D5 /* xxhash.c */; };
+		5B36FB1B1D1BFD66005E40D5 /* xxhash.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B36FB191D1BFD66005E40D5 /* xxhash.h */; };
+		5B36FB1E1D1BFD94005E40D5 /* GLProgramState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B36FB1C1D1BFD94005E40D5 /* GLProgramState.cpp */; };
+		5B36FB1F1D1BFD94005E40D5 /* GLProgramState.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B36FB1D1D1BFD94005E40D5 /* GLProgramState.h */; };
 		ABD4CC791D1B8B410066B0B5 /* GL.h in Headers */ = {isa = PBXBuildFile; fileRef = ABD4CC751D1B8B410066B0B5 /* GL.h */; };
 		ABD4CC7A1D1B8B410066B0B5 /* PlatformConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = ABD4CC761D1B8B410066B0B5 /* PlatformConfig.h */; };
 		ABD4CC7B1D1B8B410066B0B5 /* PlatformDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = ABD4CC771D1B8B410066B0B5 /* PlatformDefine.h */; };
@@ -69,6 +73,10 @@
 		5B36FB0C1D1AD5D2005E40D5 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		5B36FB0E1D1AD5D9005E40D5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5B36FB101D1AD5E1005E40D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5B36FB181D1BFD66005E40D5 /* xxhash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xxhash.c; path = ../external/xxhash/xxhash.c; sourceTree = "<group>"; };
+		5B36FB191D1BFD66005E40D5 /* xxhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xxhash.h; path = ../external/xxhash/xxhash.h; sourceTree = "<group>"; };
+		5B36FB1C1D1BFD94005E40D5 /* GLProgramState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GLProgramState.cpp; path = ../simple/renderer/GLProgramState.cpp; sourceTree = "<group>"; };
+		5B36FB1D1D1BFD94005E40D5 /* GLProgramState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLProgramState.h; path = ../simple/renderer/GLProgramState.h; sourceTree = "<group>"; };
 		ABD4CC751D1B8B410066B0B5 /* GL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GL.h; path = ../simple/platform/GL.h; sourceTree = "<group>"; };
 		ABD4CC761D1B8B410066B0B5 /* PlatformConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatformConfig.h; path = ../simple/platform/PlatformConfig.h; sourceTree = "<group>"; };
 		ABD4CC771D1B8B410066B0B5 /* PlatformDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlatformDefine.h; path = ../simple/platform/PlatformDefine.h; sourceTree = "<group>"; };
@@ -102,6 +110,7 @@
 				5B36FAD21D1AD15D005E40D5 /* 2d */,
 				5B36FAD91D1AD187005E40D5 /* audio */,
 				5B36FAD31D1AD15F005E40D5 /* base */,
+				5B36FB161D1BFD46005E40D5 /* external */,
 				5B36FAD11D1AD150005E40D5 /* Frameworks */,
 				5B36FAD41D1AD164005E40D5 /* math */,
 				5B36FAD51D1AD168005E40D5 /* network */,
@@ -184,6 +193,8 @@
 		5B36FAD71D1AD178005E40D5 /* renderer */ = {
 			isa = PBXGroup;
 			children = (
+				5B36FB1C1D1BFD94005E40D5 /* GLProgramState.cpp */,
+				5B36FB1D1D1BFD94005E40D5 /* GLProgramState.h */,
 				5B36FAEC1D1AD219005E40D5 /* CustomCommand.cpp */,
 				5B36FAED1D1AD219005E40D5 /* CustomCommand.h */,
 				5B36FAEE1D1AD219005E40D5 /* GLProgram.cpp */,
@@ -214,6 +225,23 @@
 			children = (
 			);
 			name = audio;
+			sourceTree = "<group>";
+		};
+		5B36FB161D1BFD46005E40D5 /* external */ = {
+			isa = PBXGroup;
+			children = (
+				5B36FB171D1BFD4F005E40D5 /* xxhash */,
+			);
+			name = external;
+			sourceTree = "<group>";
+		};
+		5B36FB171D1BFD4F005E40D5 /* xxhash */ = {
+			isa = PBXGroup;
+			children = (
+				5B36FB181D1BFD66005E40D5 /* xxhash.c */,
+				5B36FB191D1BFD66005E40D5 /* xxhash.h */,
+			);
+			name = xxhash;
 			sourceTree = "<group>";
 		};
 		ABD4CC7D1D1B8B480066B0B5 /* desktop */ = {
@@ -249,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABD4CC7C1D1B8B410066B0B5 /* PlatformMacros.h in Headers */,
+				5B36FB1B1D1BFD66005E40D5 /* xxhash.h in Headers */,
 				ABD4CC7B1D1B8B410066B0B5 /* PlatformDefine.h in Headers */,
 				5B36FAE91D1AD20A005E40D5 /* Mat4.h in Headers */,
 				5B36FAE31D1AD1FD005E40D5 /* Types.h in Headers */,
@@ -257,6 +286,7 @@
 				5B36FAFD1D1AD219005E40D5 /* GLProgram.h in Headers */,
 				ABD4CC7A1D1B8B410066B0B5 /* PlatformConfig.h in Headers */,
 				5B36FB031D1AD219005E40D5 /* RenderCommand.h in Headers */,
+				5B36FB1F1D1BFD94005E40D5 /* GLProgramState.h in Headers */,
 				5B36FB011D1AD219005E40D5 /* QuadCommand.h in Headers */,
 				ABD4CC881D1B8B8F0066B0B5 /* PlatformDefine-mac.h in Headers */,
 				5B36FAEB1D1AD20A005E40D5 /* Vec3.h in Headers */,
@@ -334,6 +364,8 @@
 				5B36FB001D1AD219005E40D5 /* QuadCommand.cpp in Sources */,
 				5B36FAFE1D1AD219005E40D5 /* GLStateCache.cpp in Sources */,
 				5B36FB061D1AD219005E40D5 /* RenderQueue.cpp in Sources */,
+				5B36FB1A1D1BFD66005E40D5 /* xxhash.c in Sources */,
+				5B36FB1E1D1BFD94005E40D5 /* GLProgramState.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +424,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "../simple/platform/mac/simple2d-prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					_USRDLL,
+					ENABLE_GL_STATE_CACHE,
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -444,6 +478,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "../simple/platform/mac/simple2d-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_USRDLL,
+					ENABLE_GL_STATE_CACHE,
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;

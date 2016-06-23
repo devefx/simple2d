@@ -1,6 +1,7 @@
 #include "renderer/GLStateCache.h"
 
 static const int MAX_ATTRIBUTES = 16;
+
 static const int MAX_ACTIVE_TEXTURE = 16;
 
 namespace

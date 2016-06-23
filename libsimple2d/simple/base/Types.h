@@ -1,5 +1,5 @@
-#ifndef __TYPES_H_
-#define __TYPES_H_
+#ifndef __BASE_TYPES_H_
+#define __BASE_TYPES_H_
 
 #include "math/Vec3.h"
 #include "platform/GL.h"
@@ -198,4 +198,4 @@ struct DLL BlendFunc
     }
 };
 
-#endif // !__TYPES_H_
+#endif // !__BASE_TYPES_H_
