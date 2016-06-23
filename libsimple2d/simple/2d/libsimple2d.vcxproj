@@ -11,11 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\external\xxhash\xxhash.h" />
     <ClInclude Include="..\base\Types.h" />
     <ClInclude Include="..\math\Mat4.h" />
     <ClInclude Include="..\math\Vec3.h" />
+    <ClInclude Include="..\platform\GL.h" />
+    <ClInclude Include="..\platform\mac\GL-mac.h" />
+    <ClInclude Include="..\platform\mac\PlatformDefine-mac.h" />
+    <ClInclude Include="..\platform\PlatformConfig.h" />
+    <ClInclude Include="..\platform\PlatformDefine.h" />
+    <ClInclude Include="..\platform\PlatformMacros.h" />
+    <ClInclude Include="..\platform\win32\GL-win32.h" />
+    <ClInclude Include="..\platform\win32\PlatformDefine-win32.h" />
     <ClInclude Include="..\renderer\CustomCommand.h" />
     <ClInclude Include="..\renderer\GLProgram.h" />
+    <ClInclude Include="..\renderer\GLProgramState.h" />
     <ClInclude Include="..\renderer\GLStateCache.h" />
     <ClInclude Include="..\renderer\QuadCommand.h" />
     <ClInclude Include="..\renderer\RenderCommand.h" />
@@ -23,16 +33,21 @@
     <ClInclude Include="..\renderer\RenderQueue.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\external\xxhash\xxhash.c" />
     <ClCompile Include="..\base\Types.cpp" />
     <ClCompile Include="..\math\Mat4.cpp" />
     <ClCompile Include="..\math\Vec3.cpp" />
     <ClCompile Include="..\renderer\CustomCommand.cpp" />
     <ClCompile Include="..\renderer\GLProgram.cpp" />
+    <ClCompile Include="..\renderer\GLProgramState.cpp" />
     <ClCompile Include="..\renderer\GLStateCache.cpp" />
     <ClCompile Include="..\renderer\QuadCommand.cpp" />
     <ClCompile Include="..\renderer\RenderCommand.cpp" />
     <ClCompile Include="..\renderer\Renderer.cpp" />
     <ClCompile Include="..\renderer\RenderQueue.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\math\Mat4.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{61AA474A-28D6-48F7-B44B-7F2433794D82}</ProjectGuid>
@@ -49,8 +64,6 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v110_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
-    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
-    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -60,9 +73,6 @@
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '11.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v110_xp</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
     <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
-    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
-    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
-    <PlatformToolset>v140_xp</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -109,6 +119,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <AdditionalIncludeDirectories>$(EngineRoot)external\xxhash;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

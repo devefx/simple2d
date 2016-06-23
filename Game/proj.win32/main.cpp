@@ -123,10 +123,35 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
         glEnd();
     });
 
+    float x1 = 0.0f;
+    float y1 = 0.0f;
+    float x2 = 200.0f;
+    float y2 = 200.0f;
+
+    float globalZOrder = 0;
+    GLuint textureID = 0;
+
+    GLProgram* glprogram = new GLProgram();
+    GLProgramState* glProgramState = GLProgramState::create(glprogram);
+
+    V3F_C4B_T2F_Quad quad;
+    quad.bl.vertices = Vec3(x1, y1, 0);
+    quad.br.vertices = Vec3(x2, y1, 0);
+    quad.tl.vertices = Vec3(x1, y2, 0);
+    quad.tr.vertices = Vec3(x2, y2, 0);
+
+    Mat4 transform;//1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 100.0, 100.0, 0.0, 1.0
+    transform.m[12] = 100.0;
+    transform.m[13] = 100.0;
+
+    QuadCommand* quadCommand = new QuadCommand();
+    quadCommand->init(globalZOrder, textureID, glProgramState, BlendFunc::ALPHA_PREMULTIPLIED, &quad, 1, transform);
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(_mainWindow))
     {
         render->addCommand(command);
+        render->addCommand(quadCommand);
 
         render->clear();
 

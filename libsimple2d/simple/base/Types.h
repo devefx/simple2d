@@ -2,13 +2,7 @@
 #define __TYPES_H_
 
 #include "math/Vec3.h"
-#if defined(__APPLE__)
-#import <OpenGL/gl.h>
-#import <OpenGL/glu.h>
-#import <OpenGL/glext.h>
-#elif defined(_WIN32)
-#include "GL/glew.h"
-#endif
+#include "platform/GL.h"
 
 
 struct Color4B;
@@ -157,7 +151,7 @@ struct V3F_C4B_T2F
 /** @struct V3F_C4B_T2F_Quad
  * 4 Vertex3FTex2FColor4B.
  */
-struct V3F_C4B_T2F_Quad
+struct DLL V3F_C4B_T2F_Quad
 {
     /// top left
     V3F_C4B_T2F    tl;

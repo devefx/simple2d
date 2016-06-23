@@ -98,6 +98,25 @@ void Renderer::addCommand(RenderCommand* command, int renderQueue)
     _renderGroups[renderQueue].push_back(command);
 }
 
+void Renderer::pushGroup(int renderQueueID)
+{
+    // !_isRendering
+    _commandGroupStack.push(renderQueueID);
+}
+
+void Renderer::popGroup()
+{
+    // !_isRendering
+    _commandGroupStack.pop();
+}
+
+int Renderer::createRenderQueue()
+{
+    RenderQueue newRenderQueue;
+    _renderGroups.push_back(newRenderQueue);
+    return (int)_renderGroups.size() - 1;
+}
+
 void Renderer::processRenderCommand(RenderCommand* command)
 {
     auto commandType = command->getType();
@@ -218,6 +237,11 @@ void Renderer::clear()
     glDepthMask(true);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glDepthMask(false);
+}
+
+void Renderer::setClearColor(const Color4F& clearColor)
+{
+    glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
 }
 
 void Renderer::setDepthTest(bool enable)

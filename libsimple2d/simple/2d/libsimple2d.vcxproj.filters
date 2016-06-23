@@ -28,8 +28,17 @@
     <Filter Include="platform\desktop">
       <UniqueIdentifier>{e97c57e2-5d60-4047-ad82-afcffc00f9bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="platform\mac">
+      <UniqueIdentifier>{5dc8e9a1-475f-461d-a2e1-b416ab898b61}</UniqueIdentifier>
+    </Filter>
     <Filter Include="platform\win32">
       <UniqueIdentifier>{75cd46d5-0403-4d8f-9781-e375efab4462}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{7092214e-f407-48c8-ada6-1824f4ff9a36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\xxhash">
+      <UniqueIdentifier>{575177ee-edfb-4cb7-a098-983bef7e401f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +72,36 @@
     <ClInclude Include="..\renderer\GLStateCache.h">
       <Filter>renderer</Filter>
     </ClInclude>
+    <ClInclude Include="..\platform\PlatformConfig.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\PlatformDefine.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\PlatformMacros.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\win32\PlatformDefine-win32.h">
+      <Filter>platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\mac\PlatformDefine-mac.h">
+      <Filter>platform\mac</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\GL.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\win32\GL-win32.h">
+      <Filter>platform\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\mac\GL-mac.h">
+      <Filter>platform\mac</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\GLProgramState.h">
+      <Filter>renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\external\xxhash\xxhash.h">
+      <Filter>external\xxhash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\renderer\Renderer.cpp">
@@ -95,5 +134,16 @@
     <ClCompile Include="..\renderer\GLStateCache.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
+    <ClCompile Include="..\renderer\GLProgramState.cpp">
+      <Filter>renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\external\xxhash\xxhash.c">
+      <Filter>external\xxhash</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\math\Mat4.inl">
+      <Filter>math</Filter>
+    </None>
   </ItemGroup>
 </Project>

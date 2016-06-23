@@ -7,11 +7,6 @@ void CustomCommand::init(float globalZOrder, std::function<void()> renderFunc)
     _renderFunc = renderFunc;
 }
 
-RenderCommand::Type CustomCommand::getType() const 
-{
-    return RenderCommand::Type::CUSTOM_COMMAND;
-}
-
 void CustomCommand::execute()
 {
     if (_renderFunc)

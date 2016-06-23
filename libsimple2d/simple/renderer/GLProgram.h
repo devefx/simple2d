@@ -1,15 +1,8 @@
 #ifndef __GLPROGRAM_H__
 #define __GLPROGRAM_H__
 
-#if defined(__APPLE__)
-#define DLL __attribute__ ((visibility("default")))
-#elif defined(_WIN32)
-#ifdef _USRDLL
-#define DLL __declspec(dllexport)
-#else
-#define DLL __declspec(dllimport)
-#endif
-#endif
+#include "platform/PlatformMacros.h"
+#include "platform/GL.h"
 
 class DLL GLProgram
 {
@@ -41,6 +34,16 @@ public:
         // backward compatibility
         VERTEX_ATTRIB_TEX_COORDS = VERTEX_ATTRIB_TEX_COORD,
     };
+
+
+
+    inline const GLuint getProgram() const { return _program; }
+
+protected:
+
+    GLuint            _program;
+    GLuint            _vertShader;
+    GLuint            _fragShader;
 
 };
 

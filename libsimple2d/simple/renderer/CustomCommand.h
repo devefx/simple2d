@@ -10,10 +10,12 @@ class DLL CustomCommand : public RenderCommand
 public:
     void init(float globalZOrder, std::function<void()> renderFunc);
 
-    virtual Type getType() const override;
-
     void execute();
 
+    inline virtual Type getType() const override
+    {
+        return RenderCommand::Type::CUSTOM_COMMAND;
+    }
 protected:
 
     std::function<void()> _renderFunc;

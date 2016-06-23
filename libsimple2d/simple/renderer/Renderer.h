@@ -20,9 +20,6 @@ public:
     static const int INDEX_VBO_SIZE = VBO_SIZE * 6 / 4;
     /**The rendercommands which can be batched will be saved into a list, this is the reversed size of this list.*/
     static const int BATCH_QUADCOMMAND_RESEVER_SIZE = 64;
-    /**Reserved for material id, which means that the command could not be batched.*/
-    static const int MATERIAL_ID_DO_NOT_BATCH = 0;
-
 
     Renderer();
 
@@ -34,12 +31,25 @@ public:
 
     void addCommand(RenderCommand* command, int renderQueue);
 
+    void pushGroup(int renderQueueID);
+
+    void popGroup();
+
+    int createRenderQueue();
+
     void render();
 
     void clean();
 
     void clear();
 
+    void setClearColor(const Color4F& clearColor);
+
+    size_t getDrawnBatches() const { return _drawnBatches; }
+
+    size_t getDrawnVertices() const { return _drawnVertices; }
+
+    void clearDrawStats() { _drawnBatches = _drawnVertices = 0; }
 
     void setDepthTest(bool enable);
 

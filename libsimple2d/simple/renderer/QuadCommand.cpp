@@ -1,7 +1,7 @@
 #include "renderer/QuadCommand.h"
 
 #include "renderer/GLStateCache.h"
-
+#include "xxhash.h"
 
 QuadCommand::QuadCommand()
     : _materialID(0)
@@ -13,14 +13,31 @@ QuadCommand::QuadCommand()
 
 }
 
-RenderCommand::Type QuadCommand::getType() const 
+void QuadCommand::init(float globalOrder, GLuint textureID, GLProgramState* shader, const BlendFunc& blendType, V3F_C4B_T2F_Quad* quads,
+                       size_t quadCount, const Mat4& mv)
 {
-    return RenderCommand::Type::QUAD_COMMAND;
+    RenderCommand::init(globalOrder);
+
+    _quadsCount = quadCount;
+    _quads = quads;
+
+    _mv = mv;
+
+    if (_textureID != textureID || _blendType.src != blendType.src || _blendType.dst != blendType.dst || _glProgramState != shader)
+    {
+        _textureID = textureID;
+        _blendType = blendType;
+        _glProgramState = shader;
+
+        generateMaterialID();
+    }
 }
 
 void QuadCommand::generateMaterialID()
 {
-
+    int programID = (int) _glProgramState->getGLProgram()->getProgram();
+    int intArray[4] = { programID, (int)_textureID, (int)_blendType.src, (int)_blendType.dst};
+    _materialID = XXH32((const void*) intArray, sizeof(intArray), 0);
 }
 
 void QuadCommand::useMaterial() const
@@ -28,5 +45,6 @@ void QuadCommand::useMaterial() const
     GL::bindTexture2D(_textureID);
 
     GL::blendFunc(_blendType.src, _blendType.dst);
-}
 
+    _glProgramState->apply(_mv);
+}
