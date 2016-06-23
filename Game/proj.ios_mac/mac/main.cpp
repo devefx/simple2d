@@ -32,6 +32,7 @@ int main(int argc, const char * argv[]) {
         
         /* Poll for and process events */
         glfwPollEvents();
+        
     }
     
     glfwTerminate();

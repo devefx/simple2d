@@ -162,6 +162,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
         /* Poll for and process events */
         glfwPollEvents();
+
+		Sleep(1);
     }
 
     glfwTerminate();

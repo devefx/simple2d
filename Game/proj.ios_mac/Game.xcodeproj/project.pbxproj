@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB0A1D581D19269A00A1D73C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB0A1D561D19269A00A1D73C /* Info.plist */; };
 		AB0A1D5A1D1926A600A1D73C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB0A1D591D1926A600A1D73C /* main.cpp */; };
 		AB0A1D901D1929B400A1D73C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0A1D8F1D1929B400A1D73C /* Cocoa.framework */; };
 		AB0A1D921D1929C500A1D73C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0A1D911D1929C500A1D73C /* OpenGL.framework */; };
@@ -87,6 +86,7 @@
 			children = (
 				AB0A1D551D19264E00A1D73C /* Icons */,
 				AB0A1D591D1926A600A1D73C /* main.cpp */,
+				5B36FA7A1D195A95005E40D5 /* Prefix.pch */,
 			);
 			name = mac;
 			sourceTree = "<group>";
@@ -95,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				AB0A1D561D19269A00A1D73C /* Info.plist */,
-				5B36FA7A1D195A95005E40D5 /* Prefix.pch */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -145,7 +144,7 @@
 		AB0A1D381D1925D700A1D73C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0730;
 				TargetAttributes = {
 					AB0A1D411D19262600A1D73C = {
 						CreatedOnToolsVersion = 7.1;
@@ -191,7 +190,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB0A1D581D19269A00A1D73C /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,10 +210,12 @@
 		AB0A1D3C1D1925D700A1D73C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../libsimple2d/external/glfw3/include/mac";
 				INFOPLIST_FILE = "";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../../libsimple2d/external/glfw3/prebuilt/mac";
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};

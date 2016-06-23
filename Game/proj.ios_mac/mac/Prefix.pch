@@ -1,15 +1,11 @@
 //
-//  PrefixHeader.pch
-//  Game
-//
-//  Created by YueYouqian on 16/6/21.
-//
+// Prefix header for all source files of the 'Paralaxer' target in the 'Paralaxer' project
 //
 
-#ifndef PrefixHeader_pch
-#define PrefixHeader_pch
+#ifdef __OBJC__
+#import <Cocoa/Cocoa.h>
+#endif
 
-// Include any system framework and library headers here that should be included in all compilation units.
-// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-
-#endif /* PrefixHeader_pch */
+#ifdef __cplusplus
+//#include "cocos2d.h"
+#endif
