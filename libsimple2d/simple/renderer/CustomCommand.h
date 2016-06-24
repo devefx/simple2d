@@ -5,6 +5,8 @@
 
 #include <functional>
 
+NS_BEGIN
+
 class DLL CustomCommand : public RenderCommand
 {
 public:
@@ -20,5 +22,7 @@ protected:
 
     std::function<void()> _renderFunc;
 };
+
+NS_END
 
 #endif // !__CUSTOMCOMMAND_H__

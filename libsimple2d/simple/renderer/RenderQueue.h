@@ -8,6 +8,8 @@
 //temp
 #include "platform/GL.h"
 
+NS_BEGIN
+
 class RenderQueue
 {
 public:
@@ -45,6 +47,6 @@ protected:
     GLboolean _isDepthWrite;
 };
 
-
+NS_END
 
 #endif // !__RENDER_QUEUE_H__

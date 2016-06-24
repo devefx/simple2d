@@ -1,5 +1,6 @@
 #include "renderer/CustomCommand.h"
 
+NS_BEGIN
 
 void CustomCommand::init(float globalZOrder, std::function<void()> renderFunc)
 {
@@ -14,3 +15,5 @@ void CustomCommand::execute()
         _renderFunc();
     }
 }
+
+NS_END

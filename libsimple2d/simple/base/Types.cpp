@@ -1,5 +1,7 @@
 #include "base/Types.h"
 
+NS_BEGIN
+
 /**
  * Color3B
  */
@@ -220,3 +222,4 @@ const BlendFunc BlendFunc::ALPHA_PREMULTIPLIED = {GL_ONE, GL_ONE_MINUS_SRC_ALPHA
 const BlendFunc BlendFunc::ALPHA_NON_PREMULTIPLIED = {GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA};
 const BlendFunc BlendFunc::ADDITIVE = {GL_SRC_ALPHA, GL_ONE};
 
+NS_END

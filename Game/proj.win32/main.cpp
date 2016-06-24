@@ -1,16 +1,67 @@
 #include "main.h"
 
+#include <stdio.h>
+
 #include "GL/glew.h"
 #include "glfw3.h"
+#include "Bitmap.h"
 
 #include "renderer/Renderer.h"
 #include "renderer/CustomCommand.h"
+#include "renderer/GLStateCache.h"
 
 #if _MSC_VER > 1800
 #pragma comment(lib,"glfw3-2015.lib")
 #else
 #pragma comment(lib,"glfw3.lib")
 #endif
+
+
+USING_NS;
+
+
+#define STRINGIFY(A)  #A
+
+// v
+const GLchar* vShaderByteArray = STRINGIFY(
+
+attribute vec4 a_position;
+attribute vec2 a_texCoord;
+attribute vec4 a_color;
+
+\n#ifdef GL_ES\n
+    varying lowp vec4 v_fragmentColor;
+varying mediump vec2 v_texCoord;
+\n#else\n
+    varying vec4 v_fragmentColor;
+varying vec2 v_texCoord;
+\n#endif\n
+
+    void main()
+{
+    gl_Position = PMatrix * a_position;
+    v_fragmentColor = a_color;
+    v_texCoord = a_texCoord;
+}
+
+);
+// f
+const GLchar* fShaderByteArray = STRINGIFY(
+
+\n#ifdef GL_ES\n
+precision lowp float;
+\n#endif\n
+
+varying vec4 v_fragmentColor;
+varying vec2 v_texCoord;
+
+void main()
+{
+    gl_FragColor = v_fragmentColor * texture2D(Texture0, v_texCoord);
+}
+
+);
+
 
 static bool glew_dynamic_binding()
 {
@@ -109,6 +160,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
     CustomCommand* command = new CustomCommand();
     command->init(0, []() {
+        GL::useProgram(0);
+        
         glBegin(GL_TRIANGLES);
 
         glColor3f(1.0, 0.0, 0.0);    // Red
@@ -121,31 +174,81 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
         glVertex3f(1.0, -1.0, 0.0);
 
         glEnd();
-    });
 
+    });
+    
     float x1 = 0.0f;
     float y1 = 0.0f;
-    float x2 = 200.0f;
-    float y2 = 200.0f;
+    float x2 = 300.0f;
+    float y2 = 300.0f;
 
     float globalZOrder = 0;
     GLuint textureID = 0;
 
-    GLProgram* glprogram = new GLProgram();
-    GLProgramState* glProgramState = GLProgramState::create(glprogram);
 
+    Bitmap bmp("F:\\1.bmp");
+    // 加载纹理
+    unsigned char *data = (unsigned char*)bmp.getBitmap();
+
+    
+
+    /*
+    size_t size = 0;
+    FILE* file = fopen("F:\\1.bmp", "r");
+    fseek(file, 0, SEEK_END);
+    size = ftell(file) - 54;
+    fseek(file, 54, SEEK_SET);
+
+    data = (unsigned char*)malloc(sizeof(unsigned char) * size);
+    fread(data, sizeof(unsigned char), size, file);
+    fclose(file);
+    */
+    // 设置对齐
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 8);
+    glGenTextures(1, &textureID);
+    //此为纹理过滤参数设置
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+
+    GLenum err = glGetError();
+    if (err != GL_NO_ERROR)
+    {
+        return -1;
+    }
+
+    // 着色器
+    GLProgram* glprogram = GLProgram::createWithByteArrays(vShaderByteArray, fShaderByteArray);
+    GLProgramState* glProgramState = GLProgramState::create(glprogram);
+    
+    // 物体顶点数据
     V3F_C4B_T2F_Quad quad;
     quad.bl.vertices = Vec3(x1, y1, 0);
     quad.br.vertices = Vec3(x2, y1, 0);
     quad.tl.vertices = Vec3(x1, y2, 0);
     quad.tr.vertices = Vec3(x2, y2, 0);
 
-    Mat4 transform;//1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 100.0, 100.0, 0.0, 1.0
+    quad.bl.texCoords = Tex2F(0, 0);
+    quad.br.texCoords = Tex2F(1, 0);
+    quad.tl.texCoords = Tex2F(0, 1);
+    quad.tr.texCoords = Tex2F(1, 1);
+
+    quad.bl.colors = Color4B::RED;
+    quad.br.colors = Color4B::RED;
+    quad.tl.colors = Color4B::RED;
+    quad.tr.colors = Color4B::RED;
+    // 物体位置
+    Mat4 transform;
     transform.m[12] = 100.0;
     transform.m[13] = 100.0;
 
     QuadCommand* quadCommand = new QuadCommand();
     quadCommand->init(globalZOrder, textureID, glProgramState, BlendFunc::ALPHA_PREMULTIPLIED, &quad, 1, transform);
+
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(_mainWindow))

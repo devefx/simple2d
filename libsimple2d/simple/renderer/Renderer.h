@@ -10,6 +10,7 @@
 #include "renderer/QuadCommand.h"
 #include "renderer/RenderQueue.h"
 
+NS_BEGIN
 
 class DLL Renderer
 {
@@ -90,5 +91,7 @@ protected:
     size_t _drawnVertices;
 
 };
+
+NS_END
 
 #endif // !__Renderer_h__

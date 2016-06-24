@@ -11,6 +11,7 @@
 #include "base/Types.h"
 #include "math/Mat4.h"
 
+NS_BEGIN
 
 class DLL QuadCommand : public RenderCommand
 {
@@ -59,5 +60,6 @@ protected:
     Mat4 _mv;               // modelView
 };
 
+NS_END
 
 #endif // !__QUAD_COMMAND_H__

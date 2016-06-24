@@ -5,6 +5,8 @@
 #include "renderer/CustomCommand.h"
 #include "renderer/GLStateCache.h"
 
+NS_BEGIN
+
 static const int DEFAULT_RENDER_QUEUE = 0;
 
 Renderer::Renderer()
@@ -287,6 +289,7 @@ void Renderer::drawBatchedQuads()
     glBindBuffer(GL_ARRAY_BUFFER, _quadbuffersVBO[0]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(_quadVerts[0]) * _numberQuads * 4 , _quadVerts, GL_DYNAMIC_DRAW);
 #if ENABLE_VAO
+
     void *buf = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
     memcpy(buf, _quadVerts, sizeof(_quadVerts[0]) * _numberQuads * 4);
     glUnmapBuffer(GL_ARRAY_BUFFER);
@@ -352,3 +355,5 @@ void Renderer::flush()
         _lastMaterialID = 0;
     }
 }
+
+NS_END

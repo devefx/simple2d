@@ -3,6 +3,8 @@
 #include "renderer/GLStateCache.h"
 #include "xxhash.h"
 
+NS_BEGIN
+
 QuadCommand::QuadCommand()
     : _materialID(0)
     , _textureID(0)
@@ -48,3 +50,5 @@ void QuadCommand::useMaterial() const
 
     _glProgramState->apply(_mv);
 }
+
+NS_END

@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+NS_BEGIN
+
 static bool compare(const RenderCommand* a, const RenderCommand* b)
 {
     return a->getGlobalOrder() > b->getGlobalOrder();
@@ -72,3 +74,5 @@ void RenderQueue::restoreRenderState()
     glDepthMask(_isDepthWrite);
 
 }
+
+NS_END

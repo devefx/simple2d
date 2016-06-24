@@ -5,6 +5,8 @@
 #include "platform/GL.h"
 #include "platform/PlatformMacros.h"
 
+NS_BEGIN
+
 namespace GL
 {
     enum
@@ -47,5 +49,7 @@ namespace GL
 
     void DLL bindVAO(GLuint vaoId);
 }
+
+NS_END
 
 #endif // !__GLSTATECACHE_H__

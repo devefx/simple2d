@@ -40,6 +40,9 @@
     <Filter Include="external\xxhash">
       <UniqueIdentifier>{575177ee-edfb-4cb7-a098-983bef7e401f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="renderer\unkown">
+      <UniqueIdentifier>{0bd4cd5e-2121-420b-b192-da2bd63a31ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\renderer\Renderer.h">
@@ -50,9 +53,6 @@
     </ClInclude>
     <ClInclude Include="..\math\Vec3.h">
       <Filter>math</Filter>
-    </ClInclude>
-    <ClInclude Include="..\renderer\GLProgram.h">
-      <Filter>renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\renderer\QuadCommand.h">
       <Filter>renderer</Filter>
@@ -96,11 +96,20 @@
     <ClInclude Include="..\platform\mac\GL-mac.h">
       <Filter>platform\mac</Filter>
     </ClInclude>
-    <ClInclude Include="..\renderer\GLProgramState.h">
-      <Filter>renderer</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\external\xxhash\xxhash.h">
       <Filter>external\xxhash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\AutoreleasePool.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\base\Ref.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\GLProgramState.h">
+      <Filter>renderer\unkown</Filter>
+    </ClInclude>
+    <ClInclude Include="..\renderer\GLProgram.h">
+      <Filter>renderer\unkown</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,9 +131,6 @@
     <ClCompile Include="..\renderer\RenderCommand.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\renderer\GLProgram.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\renderer\CustomCommand.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
@@ -134,11 +140,20 @@
     <ClCompile Include="..\renderer\GLStateCache.cpp">
       <Filter>renderer</Filter>
     </ClCompile>
-    <ClCompile Include="..\renderer\GLProgramState.cpp">
-      <Filter>renderer</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\external\xxhash\xxhash.c">
       <Filter>external\xxhash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\AutoreleasePool.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\base\Ref.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\GLProgramState.cpp">
+      <Filter>renderer\unkown</Filter>
+    </ClCompile>
+    <ClCompile Include="..\renderer\GLProgram.cpp">
+      <Filter>renderer\unkown</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

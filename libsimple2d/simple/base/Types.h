@@ -4,6 +4,7 @@
 #include "math/Vec3.h"
 #include "platform/GL.h"
 
+NS_BEGIN
 
 struct Color4B;
 struct Color4F;
@@ -197,5 +198,7 @@ struct DLL BlendFunc
         return src < a.src || (src == a.src && dst < a.dst);
     }
 };
+
+NS_END
 
 #endif // !__BASE_TYPES_H_

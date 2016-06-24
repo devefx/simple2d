@@ -6,6 +6,8 @@
 // temp
 #include "platform/PlatformMacros.h"
 
+NS_BEGIN
+
 class DLL RenderCommand
 {
 public:
@@ -35,5 +37,6 @@ protected:
     bool _skipBatching;
 };
 
+NS_END
 
 #endif // !__RENDER_COMMAND_H__

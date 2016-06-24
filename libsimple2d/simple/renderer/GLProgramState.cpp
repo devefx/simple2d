@@ -2,6 +2,7 @@
 
 #include <new>
 
+NS_BEGIN
 
 GLProgramState* GLProgramState::create(GLProgram* glprogram)
 {
@@ -34,5 +35,8 @@ bool GLProgramState::init(GLProgram* glprogram)
 
 void GLProgramState::apply(const Mat4& modelView)
 {
-
+   _glprogram->use();
+   _glprogram->setUniformsForBuiltins(modelView);
 }
+
+NS_END

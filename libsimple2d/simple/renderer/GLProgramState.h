@@ -5,6 +5,8 @@
 
 #include "math/Mat4.h"
 
+NS_BEGIN
+
 class DLL GLProgramState
 {
 public:
@@ -26,5 +28,7 @@ protected:
 
 
 };
+
+NS_END
 
 #endif // !__GLPROGRAMSTATE_H__
