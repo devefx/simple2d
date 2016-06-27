@@ -1,7 +1,7 @@
 #ifndef __PLATFORM_DEFINE_H__
 #define __PLATFORM_DEFINE_H__
 
-#include "platform/PlatformDefine.h"
+#include "platform/PlatformConfig.h"
 
 #if TARGET_PLATFORM == PLATFORM_IOS
 #include "platform/ios/PlatformDefine-ios.h"
