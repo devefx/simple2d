@@ -4,7 +4,7 @@
 
 #include "GL/glew.h"
 #include "glfw3.h"
-#include "Bitmap.h"
+#include "platform/Image.h"
 
 #include "renderer/Renderer.h"
 #include "renderer/CustomCommand.h"
@@ -119,6 +119,8 @@ static bool glew_dynamic_binding()
     return true;
 }
 
+GLuint textureID;
+
 int APIENTRY _tWinMain(HINSTANCE hInstance,
                        HINSTANCE hPrevInstance,
                        LPTSTR    lpCmdLine,
@@ -161,7 +163,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     CustomCommand* command = new CustomCommand();
     command->init(0, []() {
         GL::useProgram(0);
-        
+        /*
         glBegin(GL_TRIANGLES);
 
         glColor3f(1.0, 0.0, 0.0);    // Red
@@ -174,25 +176,31 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
         glVertex3f(1.0, -1.0, 0.0);
 
         glEnd();
+        
+        
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glBegin(GL_QUADS);
 
+        glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  1.0f);
+        glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f,  1.0f);
+        glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  1.0f);
+        glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  1.0f);
+
+        glEnd();
+        */
     });
     
     float x1 = 0.0f;
     float y1 = 0.0f;
-    float x2 = 300.0f;
-    float y2 = 300.0f;
+    float x2 = 256;//220.0f;
+    float y2 = 256;//74.0f;
 
     float globalZOrder = 0;
-    GLuint textureID = 0;
 
-
-    Bitmap bmp("F:\\1.bmp");
     // 加载纹理
-    unsigned char *data = (unsigned char*)bmp.getBitmap();
+    unsigned char *data;
 
-    
-
-    /*
     size_t size = 0;
     FILE* file = fopen("F:\\1.bmp", "r");
     fseek(file, 0, SEEK_END);
@@ -202,17 +210,37 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     data = (unsigned char*)malloc(sizeof(unsigned char) * size);
     fread(data, sizeof(unsigned char), size, file);
     fclose(file);
-    */
+
+
+    unsigned char *data_jpg;
+    size_t size_jpg = 0;
+    
+    FILE* fp = fopen("F:\\1.png", "rb");
+    fseek(fp, 0, SEEK_END);
+    size_jpg = ftell(fp);
+    fseek(fp, 0, SEEK_SET);
+
+    data_jpg = (unsigned char*)malloc(sizeof(unsigned char) * size_jpg);
+    fread(data_jpg, sizeof(unsigned char), size_jpg, fp);
+    fclose(fp);
+    
+    Image* image = new (std::nothrow) Image();
+    image->initWithImageData(data_jpg, size_jpg);
+
+   // image->getData();
+
     // 设置对齐
     glPixelStorei(GL_UNPACK_ALIGNMENT, 8);
+
     glGenTextures(1, &textureID);
+    glBindTexture(GL_TEXTURE_2D, textureID);
     //此为纹理过滤参数设置
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE,  data);
 
 
     GLenum err = glGetError();
@@ -232,15 +260,15 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     quad.tl.vertices = Vec3(x1, y2, 0);
     quad.tr.vertices = Vec3(x2, y2, 0);
 
-    quad.bl.texCoords = Tex2F(0, 0);
-    quad.br.texCoords = Tex2F(1, 0);
-    quad.tl.texCoords = Tex2F(0, 1);
-    quad.tr.texCoords = Tex2F(1, 1);
+    quad.bl.texCoords = Tex2F(0, 1);
+    quad.br.texCoords = Tex2F(1, 1);
+    quad.tl.texCoords = Tex2F(0, 0);
+    quad.tr.texCoords = Tex2F(1, 0);
 
-    quad.bl.colors = Color4B::RED;
-    quad.br.colors = Color4B::RED;
-    quad.tl.colors = Color4B::RED;
-    quad.tr.colors = Color4B::RED;
+    quad.bl.colors = Color4B::WHITE;
+    quad.br.colors = Color4B::WHITE;
+    quad.tl.colors = Color4B::WHITE;
+    quad.tr.colors = Color4B::WHITE;
     // 物体位置
     Mat4 transform;
     transform.m[12] = 100.0;
