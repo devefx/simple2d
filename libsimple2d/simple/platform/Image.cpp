@@ -3,12 +3,7 @@
 #include "unzip.h"
 #include "png.h"
 #include "jpeglib.h"
-
-#define RGB_PREMULTIPLY_ALPHA(vr, vg, vb, va) \
-    (unsigned)(((unsigned)((unsigned char)(vr) * ((unsigned char)(va) + 1)) >> 8) | \
-    ((unsigned)((unsigned char)(vg) * ((unsigned char)(va) + 1) >> 8) << 8) | \
-    ((unsigned)((unsigned char)(vb) * ((unsigned char)(va) + 1) >> 8) << 16) | \
-    ((unsigned)(unsigned char)(va) << 24))
+#include <stdio.h>
 
 NS_BEGIN
 
@@ -19,6 +14,8 @@ Image::Image()
 , _height(0)
 , _unpack(false)
 , _fileType(Format::UNKNOWN)
+, _renderFormat(Texture2D::PixelFormat::NONE)
+, _hasPremultipliedAlpha(true)
 {
 
 }
@@ -100,6 +97,21 @@ Image::Format Image::detectFormat(const unsigned char * data, size_t dataLen)
     }
     LOG("simple2d: can't detect image format");
     return Format::UNKNOWN;
+}
+
+int Image::getBitPerPixel()
+{
+    return Texture2D::getPixelFormatInfoMap().at(_renderFormat).bpp;
+}
+
+bool Image::hasAlpha()
+{
+    return Texture2D::getPixelFormatInfoMap().at(_renderFormat).alpha;
+}
+
+bool Image::isCompressed()
+{
+    return Texture2D::getPixelFormatInfoMap().at(_renderFormat).compressed;
 }
 
 //---------------------------------------------------------------------------------
@@ -193,7 +205,6 @@ bool Image::initWithJpgData(const unsigned char * data, size_t dataLen)
 // PNG
 //
 //---------------------------------------------------------------------------------
-#define PNGSIGSIZE  8
 
 typedef struct 
 {
@@ -219,6 +230,8 @@ static void pngReadCallback(png_structp png_ptr, png_bytep data, png_size_t leng
 
 bool Image::initWithPngData(const unsigned char * data, size_t dataLen)
 {
+#define PNGSIGSIZE  8
+
     png_byte        header[PNGSIGSIZE]  = {0}; 
     png_structp     png_ptr             = 0;
     png_infop       info_ptr            = 0;
@@ -290,16 +303,16 @@ bool Image::initWithPngData(const unsigned char * data, size_t dataLen)
         switch (color_type)
         {
         case PNG_COLOR_TYPE_GRAY:
-            //_renderFormat = Texture2D::PixelFormat::I8;
+            _renderFormat = Texture2D::PixelFormat::I8;
             break;
         case PNG_COLOR_TYPE_GRAY_ALPHA:
-            //_renderFormat = Texture2D::PixelFormat::AI88;
+            _renderFormat = Texture2D::PixelFormat::AI88;
             break;
         case PNG_COLOR_TYPE_RGB:
-            //_renderFormat = Texture2D::PixelFormat::RGB888;
+            _renderFormat = Texture2D::PixelFormat::RGB888;
             break;
         case PNG_COLOR_TYPE_RGB_ALPHA:
-            //_renderFormat = Texture2D::PixelFormat::RGBA8888;
+            _renderFormat = Texture2D::PixelFormat::RGBA8888;
             break;
         default:
             break;
@@ -356,10 +369,274 @@ bool Image::initWithPngData(const unsigned char * data, size_t dataLen)
     return ret;
 }
 
+bool Image::saveToFile(const std::string& filename, bool isToRGB)
+{
+    //only support for Texture2D::PixelFormat::RGB888 or Texture2D::PixelFormat::RGBA8888 uncompressed data
+    if (isCompressed() || (_renderFormat != Texture2D::PixelFormat::RGB888 && _renderFormat != Texture2D::PixelFormat::RGBA8888))
+    {
+        LOG("simple2d: Image: saveToFile is only support for Texture2D::PixelFormat::RGB888 or Texture2D::PixelFormat::RGBA8888 uncompressed data for now");
+        return false;
+    }
+
+    bool ret = false;
+
+    do 
+    {
+        BREAK_IF(filename.size() <= 4);
+
+        std::string strLowerCasePath(filename);
+        for (unsigned int i = 0; i < strLowerCasePath.length(); ++i)
+        {
+            strLowerCasePath[i] = tolower(filename[i]);
+        }
+
+        if (std::string::npos != strLowerCasePath.find(".png"))
+        {
+            ret = saveImageToPNG(filename, isToRGB);
+        }
+        else if (std::string::npos != strLowerCasePath.find(".jpg"))
+        {
+            ret = saveImageToJPG(filename);
+        }
+
+    } while (0);
+
+    return ret;
+}
+
+bool Image::saveImageToPNG(const std::string& filePath, bool isToRGB)
+{
+    bool ret = false;
+
+    do 
+    {
+        FILE *fp;
+        png_structp png_ptr;
+        png_infop info_ptr;
+        png_colorp palette;
+        png_bytep *row_pointers;
+
+        fp = fopen(filePath.c_str(), "wb");
+        BREAK_IF(nullptr == fp);
+
+        png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+
+        if (nullptr == png_ptr)
+        {
+            fclose(fp);
+            break;
+        }
+
+        info_ptr = png_create_info_struct(png_ptr);
+        if (nullptr == info_ptr)
+        {
+            fclose(fp);
+            png_destroy_write_struct(&png_ptr, nullptr);
+            break;
+        }
+
+        if (setjmp(png_jmpbuf(png_ptr)))
+        {
+            fclose(fp);
+            png_destroy_write_struct(&png_ptr, &info_ptr);
+            break;
+        }
+
+        png_init_io(png_ptr, fp);
+
+        if (!isToRGB && hasAlpha())
+        {
+            png_set_IHDR(png_ptr, info_ptr, _width, _height, 8, PNG_COLOR_TYPE_RGB_ALPHA,
+                PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+        } 
+        else
+        {
+            png_set_IHDR(png_ptr, info_ptr, _width, _height, 8, PNG_COLOR_TYPE_RGB,
+                PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+        }
+
+        palette = (png_colorp)png_malloc(png_ptr, PNG_MAX_PALETTE_LENGTH * sizeof (png_color));
+        png_set_PLTE(png_ptr, info_ptr, palette, PNG_MAX_PALETTE_LENGTH);
+
+        png_write_info(png_ptr, info_ptr);
+
+        png_set_packing(png_ptr);
+
+        row_pointers = (png_bytep *)malloc(_height * sizeof(png_bytep));
+        if(row_pointers == nullptr)
+        {
+            fclose(fp);
+            png_destroy_write_struct(&png_ptr, &info_ptr);
+            break;
+        }
+
+        if (!hasAlpha())
+        {
+            for (int i = 0; i < (int)_height; i++)
+            {
+                row_pointers[i] = (png_bytep)_data + i * _width * 3;
+            }
+
+            png_write_image(png_ptr, row_pointers);
+
+            free(row_pointers);
+            row_pointers = nullptr;
+        }
+        else
+        {
+            if (isToRGB)
+            {
+                unsigned char *tempData = static_cast<unsigned char*>(malloc(_width * _height * 3 * sizeof(unsigned char)));
+                if (nullptr == tempData)
+                {
+                    fclose(fp);
+                    png_destroy_write_struct(&png_ptr, &info_ptr);
+
+                    free(row_pointers);
+                    row_pointers = nullptr;
+                    break;
+                }
+
+                for (int i = 0; i < _height; ++i)
+                {
+                    for (int j = 0; j < _width; ++j)
+                    {
+                        tempData[(i * _width + j) * 3] = _data[(i * _width + j) * 4];
+                        tempData[(i * _width + j) * 3 + 1] = _data[(i * _width + j) * 4 + 1];
+                        tempData[(i * _width + j) * 3 + 2] = _data[(i * _width + j) * 4 + 2];
+                    }
+                }
+
+                for (int i = 0; i < (int)_height; i++)
+                {
+                    row_pointers[i] = (png_bytep)tempData + i * _width * 3;
+                }
+
+                png_write_image(png_ptr, row_pointers);
+
+                free(row_pointers);
+                row_pointers = nullptr;
+
+                if (tempData != nullptr)
+                {
+                    free(tempData);
+                }
+            } 
+            else
+            {
+                for (int i = 0; i < (int)_height; i++)
+                {
+                    row_pointers[i] = (png_bytep)_data + i * _width * 4;
+                }
+
+                png_write_image(png_ptr, row_pointers);
+
+                free(row_pointers);
+                row_pointers = nullptr;
+            }
+        }
+
+        png_write_end(png_ptr, info_ptr);
+
+        png_free(png_ptr, palette);
+        palette = nullptr;
+
+        png_destroy_write_struct(&png_ptr, &info_ptr);
+
+        fclose(fp);
+
+        ret = true;
+
+    } while (0);
+    
+    return ret;
+}
+
+bool Image::saveImageToJPG(const std::string& filePath)
+{
+    bool ret = false;
+
+    do 
+    {
+        struct jpeg_compress_struct cinfo;
+        struct jpeg_error_mgr jerr;
+        FILE * outfile;                 /* target file */
+        JSAMPROW row_pointer[1];        /* pointer to JSAMPLE row[s] */
+        int     row_stride;             /* physical row width in image buffer */
+
+        cinfo.err = jpeg_std_error(&jerr);
+        /* Now we can initialize the JPEG compression object. */
+        jpeg_create_compress(&cinfo);
+
+        BREAK_IF((outfile = fopen(filePath.c_str(), "wb")) == nullptr);
+
+        jpeg_stdio_dest(&cinfo, outfile);
+
+        cinfo.image_width = _width;           /* image width and height, in pixels */
+        cinfo.image_height = _height;
+        cinfo.input_components = 3;           /* # of color components per pixel */
+        cinfo.in_color_space = JCS_RGB;       /* colorspace of input image */
+
+        jpeg_set_defaults(&cinfo);
+        jpeg_set_quality(&cinfo, 90, TRUE);
+
+        jpeg_start_compress(&cinfo, TRUE);
+
+        row_stride = _width * 3;              /* JSAMPLEs per row in image_buffer */
+
+        if (hasAlpha())
+        {
+            unsigned char *tempData = static_cast<unsigned char*>(malloc(_width * _height * 3 * sizeof(unsigned char)));
+            if (nullptr == tempData)
+            {
+                jpeg_finish_compress(&cinfo);
+                jpeg_destroy_compress(&cinfo);
+                fclose(outfile);
+                break;
+            }
+
+            for (int i = 0; i < _height; ++i)
+            {
+                for (int j = 0; j < _width; ++j)
+
+                {
+                    tempData[(i * _width + j) * 3] = _data[(i * _width + j) * 4];
+                    tempData[(i * _width + j) * 3 + 1] = _data[(i * _width + j) * 4 + 1];
+                    tempData[(i * _width + j) * 3 + 2] = _data[(i * _width + j) * 4 + 2];
+                }
+            }
+
+            while (cinfo.next_scanline < cinfo.image_height)
+            {
+                row_pointer[0] = & tempData[cinfo.next_scanline * row_stride];
+                (void) jpeg_write_scanlines(&cinfo, row_pointer, 1);
+            }
+
+            if (tempData != nullptr)
+            {
+                free(tempData);
+            }
+        } 
+        else
+        {
+            while (cinfo.next_scanline < cinfo.image_height) {
+                row_pointer[0] = & _data[cinfo.next_scanline * row_stride];
+                (void) jpeg_write_scanlines(&cinfo, row_pointer, 1);
+            }
+        }
+
+        jpeg_finish_compress(&cinfo);
+        fclose(outfile);
+        jpeg_destroy_compress(&cinfo);
+
+        ret = true;
+    } while (0);
+
+    return ret;
+}
+
 void Image::premultipliedAlpha()
 {
-    //ASSERT(_renderFormat == Texture2D::PixelFormat::RGBA8888, "The pixel format should be RGBA8888!");
-
     unsigned int* fourBytes = (unsigned int*)_data;
     for(int i = 0; i < _width * _height; i++)
     {
@@ -369,7 +646,5 @@ void Image::premultipliedAlpha()
 
     _hasPremultipliedAlpha = true;
 }
-
-
 
 NS_END

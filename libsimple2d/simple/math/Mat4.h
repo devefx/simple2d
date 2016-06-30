@@ -3,6 +3,8 @@
 
 #include "math/Vec3.h"
 
+NS_BEGIN
+
 class DLL Mat4
 {
 public:
@@ -32,6 +34,8 @@ public:
 
     static const Mat4 IDENTITY;
 };
+
+NS_END
 
 #include "math/Mat4.inl"
 

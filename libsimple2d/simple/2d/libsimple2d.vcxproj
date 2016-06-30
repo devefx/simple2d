@@ -18,7 +18,10 @@
     <ClInclude Include="..\base\AutoreleasePool.h" />
     <ClInclude Include="..\base\Ref.h" />
     <ClInclude Include="..\base\Types.h" />
+    <ClInclude Include="..\math\Geometry.h" />
     <ClInclude Include="..\math\Mat4.h" />
+    <ClInclude Include="..\math\MathUtil.h" />
+    <ClInclude Include="..\math\Vec2.h" />
     <ClInclude Include="..\math\Vec3.h" />
     <ClInclude Include="..\platform\GL.h" />
     <ClInclude Include="..\platform\Image.h" />
@@ -47,7 +50,10 @@
     <ClCompile Include="..\base\AutoreleasePool.cpp" />
     <ClCompile Include="..\base\Ref.cpp" />
     <ClCompile Include="..\base\Types.cpp" />
+    <ClCompile Include="..\math\Geometry.cpp" />
     <ClCompile Include="..\math\Mat4.cpp" />
+    <ClCompile Include="..\math\MathUtil.cpp" />
+    <ClCompile Include="..\math\Vec2.cpp" />
     <ClCompile Include="..\math\Vec3.cpp" />
     <ClCompile Include="..\platform\Image.cpp" />
     <ClCompile Include="..\renderer\CustomCommand.cpp" />
@@ -62,6 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\math\Mat4.inl" />
+    <None Include="..\math\MathUtil.inl" />
+    <None Include="..\math\Vec2.inl" />
+    <None Include="..\math\Vec3.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{61AA474A-28D6-48F7-B44B-7F2433794D82}</ProjectGuid>

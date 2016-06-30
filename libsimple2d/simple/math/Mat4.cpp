@@ -3,6 +3,8 @@
 #include <memory.h>
 #define MATRIX_SIZE (sizeof(float) * 16)
 
+NS_BEGIN
+
 Mat4::Mat4()
 {
     *this = IDENTITY;
@@ -63,3 +65,5 @@ const Mat4 Mat4::ZERO = Mat4(
                     0, 0, 0, 0,
                     0, 0, 0, 0,
                     0, 0, 0, 0 );
+
+NS_END

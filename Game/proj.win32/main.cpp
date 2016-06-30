@@ -193,8 +193,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     
     float x1 = 0.0f;
     float y1 = 0.0f;
-    float x2 = 256;//220.0f;
-    float y2 = 256;//74.0f;
+    float x2 = 220.0f;
+    float y2 = 74.0f;
 
     float globalZOrder = 0;
 
@@ -202,7 +202,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     unsigned char *data;
 
     size_t size = 0;
-    FILE* file = fopen("F:\\1.bmp", "r");
+    FILE* file = fopen("F:\\1.bmp", "rb");
     fseek(file, 0, SEEK_END);
     size = ftell(file) - 54;
     fseek(file, 54, SEEK_SET);
@@ -227,8 +227,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     Image* image = new (std::nothrow) Image();
     image->initWithImageData(data_jpg, size_jpg);
 
-   // image->getData();
-
     // ÉèÖÃ¶ÔÆë
     glPixelStorei(GL_UNPACK_ALIGNMENT, 8);
 
@@ -240,7 +238,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE,  data);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, image->getWidth(), image->getHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE,  image->getData());
 
 
     GLenum err = glGetError();

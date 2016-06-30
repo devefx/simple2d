@@ -1,5 +1,7 @@
 #include "math/Mat4.h"
 
+NS_BEGIN
+
 void Mat4::transformPoint(const Vec3& point, Vec3* dst) const
 {
     float x = point.x, y = point.y, z = point.z, w = 1.0f;
@@ -17,3 +19,5 @@ inline Mat4& Mat4::operator*=(const Mat4& mat)
 {
     return *this;
 }
+
+NS_END
